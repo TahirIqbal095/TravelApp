@@ -6,24 +6,24 @@ import TravelPackage from "../component/travelPackage/TravelPackage";
 function HomePage() {
   const [packages, setPackages] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:8000/")
-      .then((res) => res.json())
-      .then((data) => setPackages(data))
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:8000/")
+  //     .then((res) => res.json())
+  //     .then((data) => setPackages(data))
+  //     .catch((err) => console.log(err));
+  // }, []);
 
-  const packageList = packages.map((pkg) => (
-    <TravelPackage
-      key={pkg.id}
-      destination={pkg.destination}
-      location={pkg.location}
-      noOfDays={pkg.noOfDays}
-      noOfPerson={pkg.noOfPerson}
-      price={pkg.price}
-      discount={pkg.discount}
-    />
-  ));
+  // const packageList = packages.map((pkg) => (
+  //   <TravelPackage
+  //     key={pkg.id}
+  //     destination={pkg.destination}
+  //     location={pkg.location}
+  //     noOfDays={pkg.noOfDays}
+  //     noOfPerson={pkg.noOfPerson}
+  //     price={pkg.price}
+  //     discount={pkg.discount}
+  //   />
+  // ));
 
   return (
     <>
