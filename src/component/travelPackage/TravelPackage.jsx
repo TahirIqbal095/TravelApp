@@ -1,17 +1,18 @@
-import { Link } from "react-router-dom";
+import React from "react";
 
+import { Link } from "react-router-dom";
 import { assets } from "../../assets/assets";
 
-function TravelPackage() {
+function TravelPackage(props) {
   return (
     <>
       <div className="bg-white shadow-md duration-500 hover:scale-100 hover:shadow-xl">
         <img
           src={assets.doodhpatri}
           alt="Product"
-          className="h-60 w-80 object-cover"
+          className="max-w-80 object-cover"
         />
-        <div className="px-4 py-6 w-80">
+        <div className="px-4 py-6 max-w-80 mx-auto">
           <p className="text-lg font-bold text-gray-800 truncate block capitalize">
             Doodhpatri
           </p>
@@ -46,7 +47,7 @@ function TravelPackage() {
           </div>
 
           <Link
-            to="details"
+            to="details/1"
             className="bg-green-600 text-white px-5 py-2 mt-4 rounded-md shadow text-sm font-medium"
           >
             Details
