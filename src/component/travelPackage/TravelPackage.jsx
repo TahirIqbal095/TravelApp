@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import { assets } from "../../assets/assets";
 
 function TravelPackage() {
@@ -39,30 +41,16 @@ function TravelPackage() {
               <p className="text-sm text-gray-600 cursor-auto ml-2">$199</p>
             </del>
             <div className="ml-auto">
-              <span class="material-symbols-outlined">shopping_bag</span>
+              <span className="material-symbols-outlined">shopping_bag</span>
             </div>
           </div>
 
-          {/* <div className="flex justify-between items-center text-center my-4 text-gray-500">
-              <div>
-                <span class="material-symbols-outlined">
-                  emoji_transportation
-                </span>
-                <p>Hotels</p>
-              </div>
-              <div>
-                <span class="material-symbols-outlined">skillet</span>
-                <p>Food</p>
-              </div>
-              <div>
-                <span class="material-symbols-outlined">car_rental</span>
-                <p>car rental</p>
-              </div>
-            </div> */}
-
-          <button className="bg-green-600 text-white px-5 py-2 mt-4 rounded-md shadow text-sm font-medium">
+          <Link
+            to="details"
+            className="bg-green-600 text-white px-5 py-2 mt-4 rounded-md shadow text-sm font-medium"
+          >
             Details
-          </button>
+          </Link>
         </div>
       </div>
     </>
