@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="details/:id" element={<DetailsPackagePage />} />
+        <Route path="package/details/:id" element={<DetailsPackagePage />} />
         <Route path="enquiry-form" element={<EnquiryForm />} />
       </Routes>
     </BrowserRouter>

@@ -6,31 +6,31 @@ import TravelPackage from "../component/travelPackage/TravelPackage";
 function HomePage() {
   const [packages, setPackages] = useState([]);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:8000/")
-  //     .then((res) => res.json())
-  //     .then((data) => setPackages(data))
-  //     .catch((err) => console.log(err));
-  // }, []);
+  useEffect(() => {
+    fetch("http://localhost:8000/package/")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setPackages(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
-  // const packageList = packages.map((pkg) => (
-  //   <TravelPackage
-  //     key={pkg.id}
-  //     destination={pkg.destination}
-  //     location={pkg.location}
-  //     noOfDays={pkg.noOfDays}
-  //     noOfPerson={pkg.noOfPerson}
-  //     price={pkg.price}
-  //     discount={pkg.discount}
-  //   />
-  // ));
+  const packageList = packages.map((pkg) => (
+    <TravelPackage
+      key={pkg.id}
+      destination={pkg.destinations}
+      location={pkg.name}
+      noOfDays={pkg.duration}
+      price={pkg.price}
+      name={pkg.name}
+    />
+  ));
 
   return (
     <>
       <section className="container |  grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-10 gap-x-6 mt-10 mb-5">
-        <TravelPackage />
-        <TravelPackage />
-        <TravelPackage />
+        {packageList}
       </section>
       <Link
         to="enquiry-form"
