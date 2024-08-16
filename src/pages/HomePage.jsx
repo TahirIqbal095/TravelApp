@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
-import { Link } from "react-router-dom";
+import Slider from "../component/ui/Slider";
+import { assets } from "../assets/assets";
 import TravelPackage from "../component/travelPackage/TravelPackage";
 
 function HomePage() {
@@ -29,15 +30,14 @@ function HomePage() {
 
   return (
     <>
+      <header>
+        <div className="">
+          <Slider />
+        </div>
+      </header>
       <section className="container |  grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-10 gap-x-6 mt-10 mb-5">
         {packageList}
       </section>
-      <Link
-        to="enquiry-form"
-        className="bg-green-600 text-white px-5 py-2 mt-4 rounded-md shadow text-sm font-medium"
-      >
-        Send Enquiry
-      </Link>
     </>
   );
 }
