@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Slider from "../component/ui/Slider";
 import { assets } from "../assets/assets";
 import TravelPackage from "../component/travelPackage/TravelPackage";
+import { Footer } from "../component/footer/Footer";
 
 function HomePage() {
   const [packages, setPackages] = useState([]);
@@ -38,6 +39,7 @@ function HomePage() {
       <section className="container |  grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-10 gap-x-6 mt-10 mb-5">
         {packageList}
       </section>
+      <Footer />
     </>
   );
 }

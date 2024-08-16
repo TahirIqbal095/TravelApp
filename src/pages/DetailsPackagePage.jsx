@@ -6,14 +6,14 @@ function DetailsPackagePage() {
   const [details, setDetails] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/package/")
+    fetch(`http://localhost:8000/package/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setDetails(data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
 
   return (
     <>
