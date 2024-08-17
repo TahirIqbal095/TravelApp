@@ -1,45 +1,35 @@
 import { useState, useEffect } from "react";
 
-import Slider from "../component/ui/Slider";
-import { assets } from "../assets/assets";
-import TravelPackage from "../component/travelPackage/TravelPackage";
-import { Footer } from "../component/footer/Footer";
+import Hero from "../component/hero/Hero";
+import CardGrid from "../component/cardgrid/CardGrid";
+import Form from "../component/form/Form";
+import Carousel from "../component/carousel/Carousel";
 
 function HomePage() {
-  const [packages, setPackages] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:8000/package/")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setPackages(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  const packageList = packages.map((pkg) => (
-    <TravelPackage
-      key={pkg.id}
-      destination={pkg.destinations}
-      location={pkg.name}
-      noOfDays={pkg.duration}
-      price={pkg.price}
-      name={pkg.name}
-    />
-  ));
-
   return (
     <>
-      <header>
-        <div className="">
-          <Slider />
+      <div className="relative">
+        <Hero />
+        <div className="absolute -bottom-[30rem]  md:-bottom-28 mx-auto w-full">
+          <Form />
         </div>
-      </header>
-      <section className="container |  grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-10 gap-x-6 mt-10 mb-5">
-        {packageList}
+      </div>
+
+      <section className="mt-[35rem] md:mt-44">
+        <CardGrid />
       </section>
-      <Footer />
+
+      <section className="container | my-6 px-2 md:px-0 py-8">
+        <div className="mb-4">
+          <h1 className=" text-3xl md:text-4xl font-bold text-gray-600">
+            Explore our
+            <span className="text-blue-500"> Tour Packages </span> by Region
+          </h1>
+        </div>
+        <div>
+          <Carousel />
+        </div>
+      </section>
     </>
   );
 }

@@ -1,5 +1,3 @@
-import "./detailsOfPackage.css";
-
 function DetailsOfPackage(props) {
   return (
     <div className="container">
@@ -24,7 +22,9 @@ function DetailsOfPackage(props) {
                 </span>
                 <h2 className="ml-1 text-blue-800 text-lg">Duration</h2>
               </div>
-              <p className="text-base text-gray-700 ml-2">4 Nights / 3 days</p>
+              <p className="text-base text-gray-700 ml-2">
+                {props.noOfDays} days
+              </p>
             </div>
           </div>
 
@@ -74,14 +74,7 @@ function DetailsOfPackage(props) {
           <h2 className="text-xl text-blue-800 font-medium">
             Tour Description
           </h2>
-          <p className="text-base text-gray-700 mt-2">
-            We know the feeling when there are long weekends or holidays or
-            simply its yearning to bunk from work and take off with family or
-            friends to explore some interesting places of India. So, when you
-            are short on time, you may choose our below tour package, which will
-            energize and rejuvenate you and it also help you to discover the
-            hidden treasures of India.
-          </p>
+          <p className="text-base text-gray-700 mt-2">{props.description}</p>
         </div>
       </div>
     </div>
