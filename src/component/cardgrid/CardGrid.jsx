@@ -23,7 +23,7 @@ export default function CardGrid() {
           </span>
         </a>
       </div>
-      <div className="gap-2 grid grid-cols-12 grid-rows-2">
+      <div className="gap-4 grid grid-cols-12 grid-rows-2">
         <Card className="col-span-12 sm:col-span-4 h-[300px]">
           <CardHeader className="absolute z-10 top-1 flex-col !items-start">
             <p className="text-tiny text-white/60 uppercase font-bold">
