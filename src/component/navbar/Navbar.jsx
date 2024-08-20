@@ -19,7 +19,7 @@ export default function Nav() {
     <Navbar>
       <NavbarContent justify="start">
         <NavbarBrand>
-          <p className="font-bold text-inherit">TourAndTravel</p>
+          <p className="font-bold text-gray-700">TourAndTravel</p>
         </NavbarBrand>
         <NavbarContent className="hidden sm:flex gap-3">
           <NavbarItem isActive>

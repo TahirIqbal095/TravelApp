@@ -9,7 +9,7 @@ function HomePage() {
   const [pkgs, setPkgs] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/tours/")
+    fetch("https://adlizone.pythonanywhere.com/api/tours/")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -26,6 +26,7 @@ function HomePage() {
       description={pkg.description}
       duration={pkg.duration}
       price={pkg.price}
+      img={pkg.image}
     />
   ));
   return (

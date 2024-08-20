@@ -6,7 +6,7 @@ function Card(props) {
     <div className="flex flex-col justify-center">
       <div className="relative rounded-xl shadow-lg p-6 max-w-lg md:max-w-3xl mx-auto border border-white bg-white">
         <div className="w-full bg-white grid place-items-center">
-          <img src={assets.img4} alt="" className="rounded-xl" />
+          <img src={props.img} alt="" className="rounded-xl" />
         </div>
         <div className="w-full bg-white flex flex-col space-y-2 py-4">
           <div className="flex justify-between item-center">

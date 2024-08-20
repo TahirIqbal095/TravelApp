@@ -11,7 +11,7 @@ function Form() {
     <form
       action="submit"
       method="post"
-      className="block p-5 bg-white mx-6 md:mx-10 shadow rounded"
+      className="block px-5 py-8 bg-white mx-6 md:mx-10 shadow rounded"
     >
       <div className="grid grid-cols-1 md:grid-cols-4 gap-2 items-center">
         <Input type="text" variant="bordered" label="Name" />
