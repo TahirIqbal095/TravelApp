@@ -37,7 +37,7 @@ export default function CardGrid() {
             removeWrapper
             alt="Card background"
             className="z-0 w-full h-full object-cover"
-            src={assets.img1}
+            src={assets.ladakh}
           />
         </Card>
         <Card className="col-span-12 sm:col-span-4 h-[300px]">

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy } from "react";
 
 import Hero from "../component/hero/Hero";
 import CardGrid from "../component/cardgrid/CardGrid";
@@ -12,7 +12,6 @@ function HomePage() {
     fetch("https://adlizone.pythonanywhere.com/api/tours/")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setPkgs(data);
       })
       .catch((error) => console.error(`Error caused by : ${error}`));
@@ -29,6 +28,9 @@ function HomePage() {
       img={pkg.image}
     />
   ));
+
+  // const Grid = lazy(() => import("../component/cardgrid/CardGrid"));
+
   return (
     <>
       <div className="relative">
