@@ -22,7 +22,6 @@ function Form({ useGrid }) {
   );
 
   const handleSubmit = async (e) => {
-    alert("hello");
     e.preventDefault();
 
     try {
@@ -65,7 +64,7 @@ function Form({ useGrid }) {
       onSubmit={handleSubmit}
       action="submit"
       method="post"
-      className="block px-5 py-8 bg-white mx-6 md:mx-10 shadow rounded"
+      className="block px-5 py-8 bg-white md:mx-10 shadow rounded"
     >
       <div className={gridClasses}>
         <Input
