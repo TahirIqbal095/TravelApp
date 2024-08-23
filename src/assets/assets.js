@@ -1,13 +1,15 @@
-import doodhpatri from "./doodhpatri.jpg";
-import img2 from "./img2.jpg";
-import img3 from "./img3.jpg";
-import img4 from "./img4.jpg";
-import ladakh from "./ladakh1.jpg";
+import gridimg1 from "./gridimg1.jpg";
+import gridimg2 from "./gridimg2.jpg";
+import gridimg3 from "./gridimg3.jpg";
+import gridimg4 from "./gridimg4.jpg";
+import gridimg5 from "./gridimg5.jpg";
+import hero from "./hero.jpg";
 
 export const assets = {
-  doodhpatri,
-  img2,
-  img3,
-  img4,
-  ladakh,
+  gridimg1,
+  gridimg2,
+  gridimg3,
+  gridimg4,
+  gridimg5,
+  hero,
 };
