@@ -13,6 +13,7 @@ function App() {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
           <Route path="package/details/:id" element={<DetailPage />} />
+          {/* <Route path="package/details/:id/booknow" element={<DetailPage />} /> */}
         </Route>
       </Routes>
     </BrowserRouter>

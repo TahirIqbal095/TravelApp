@@ -1,78 +1,148 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 
-import CardDetails from "../component/card/CardDetails";
 import Accord from "../component/accordion/Accordion";
+import Form from "../component/form/Form";
 
 function DetailPage() {
   const { id } = useParams();
-  const [categories, setCategories] = useState([]);
   const [pkg, setPkg] = useState([]);
+  const [pkgname, setPkgName] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [destination, setDestination] = useState([]);
 
   useEffect(() => {
-    fetch(`https://adlizone.pythonanywhere.com/api/tours/${id}/`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setPkg(data);
-      })
-      .catch((err) => console.error("Error caused by : " + err));
-  }, []);
+    const fetchData = async () => {
+      try {
+        const [pkgResponse, categoriesResponse, destinationsResponse] =
+          await Promise.all([
+            fetch(`https://adlizone.pythonanywhere.com/api/tours/${id}/`),
+            fetch(
+              `https://adlizone.pythonanywhere.com/api/tours/${id}/categories/`
+            ),
+            fetch(
+              `https://adlizone.pythonanywhere.com/api/tours/${id}/destinations/`
+            ),
+          ]);
 
-  useEffect(() => {
-    fetch(`https://adlizone.pythonanywhere.com/api/tours/${id}/categories/`)
-      .then((res) => res.json())
-      .then((data) => setCategories(data))
-      .catch((err) => console.error(`Error caused by : ${err}`));
+        const pkgData = await pkgResponse.json();
+        const categoriesData = await categoriesResponse.json();
+        const destinationsData = await destinationsResponse.json();
+
+        setPkg(pkgData);
+        setCategories(categoriesData);
+        setDestination(destinationsData);
+
+        const packageNames = pkgData.name;
+        setPkgName(packageNames);
+      } catch (err) {
+        console.error(`Error caused by: ${err}`);
+      }
+    };
+
+    fetchData();
   }, [id]);
 
   return (
     <>
-      <div className="container | mt-10">
-        <div className="bg-white p-6">
+      <div className=" container lg:grid lg:grid-cols-3 mb-4">
+        <section className="md:col-span-2 space-y-8 mt-8">
           <div>
-            <div className="flex justify-between py-2 border-b-1">
-              <p className="font-medium text-base md:text-lg text-gray-700">
-                Tour Package
-              </p>
-              <p className="text-base text-gray-600">{pkg.name}</p>
-            </div>
-            <div className="flex justify-between py-2 border-b-1">
-              <p className="font-medium text-base md:text-lg text-gray-700">
-                Duration
-              </p>
-              <p className="text-base text-gray-600">{pkg.duration} days</p>
-            </div>
-            <div className="flex justify-between py-2 border-b-1">
-              <p className="font-medium text-base md:text-lg text-gray-700">
-                Price
-              </p>
-              <p className="text-base text-gray-600">₹ {pkg.price}</p>
+            <img
+              src={pkg.image}
+              alt={pkg.name}
+              className="w-full max-h-60 object-cover"
+            />
+          </div>
+          <div className="bg-white shadow p-6">
+            <div>
+              <div className="flex justify-between py-2 border-b-1">
+                <p className="font-medium text-lg md:text-xl text-gray-700 flex items-center gap-2">
+                  <span>Tour Package</span>
+                  <span className="material-symbols-outlined | text-xl text-gray-600">
+                    checked_bag
+                  </span>
+                </p>
+                <p className="text-base text-gray-600">{pkg.name}</p>
+              </div>
+              <div className="flex justify-between py-2 border-b-1">
+                <p className="font-medium text-lg md:text-xl text-gray-700 flex items-center gap-2">
+                  <span>Duration</span>
+                  <span className="material-symbols-outlined | text-xl text-gray-600">
+                    schedule
+                  </span>
+                </p>
+                <p className="text-base text-gray-600">{pkg.duration} days</p>
+              </div>
+              <div className="flex justify-between py-2 border-b-1">
+                <p className="font-medium text-lg md:text-xl text-gray-700 flex items-center gap-2">
+                  <span>Price</span>
+                  <span className="material-symbols-outlined | text-xl text-gray-600">
+                    currency_rupee
+                  </span>
+                </p>
+                <p className="text-base text-gray-600">₹ {pkg.price}</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="bg-white mt-6 p-4 shadow">
-          <h2 className="text-lg md:text-xl text-gray-700 font-medium">
-            Tour Description
-          </h2>
-          <p className="text-base text-gray-700 mt-2">{pkg.description}</p>
-        </div>
-      </div>
+          <div className="bg-white mt-6 p-4 shadow">
+            <h2 className="text-lg md:text-xl text-gray-700 font-bold">
+              Tour Description
+            </h2>
+            <div className="flex gap-1 flex-wrap mt-1">
+              {categories &&
+                categories.map((cat) => (
+                  <div
+                    key={cat.id}
+                    className="bg-green-200 text-green-700 border-1 border-green-700 text-[0.7rem] rounded-full px-2 py-1"
+                  >
+                    {cat.name}
+                  </div>
+                ))}
+            </div>
+            <p className="text-base text-gray-500 mt-2">{pkg.description}</p>
+          </div>
 
-      <div className="container | mt-8">
-        <Accord />
-      </div>
-      <div className="container | my-8 bg-white p-4 shadow">
-        <h2 className="text-2xl mb-3 text-gray-700">Categories</h2>
-        <div className="flex gap-2 flex-wrap">
-          {categories &&
-            categories.map((cat) => (
-              <div className="bg-green-200 text-green-700 border-2 border-green-700 rounded-full px-3 py-1">
-                {cat.name}
-              </div>
-            ))}
-        </div>
+          <div>
+            <Accord />
+          </div>
+
+          <div className="bg-white p-4 shadow mt-8">
+            <h2 className="text-2xl mb-3 text-gray-700">Destinations</h2>
+
+            <div className="gap-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {destination &&
+                destination.map((item) => (
+                  <Card
+                    shadow="sm"
+                    key={item.id}
+                    isPressable
+                    onPress={() => console.log("item pressed")}
+                  >
+                    <CardBody className="overflow-visible p-0">
+                      <Image
+                        shadow="sm"
+                        radius="lg"
+                        width="100%"
+                        alt={item.name}
+                        className="w-full object-cover h-[140px]"
+                        src={item.image}
+                      />
+                    </CardBody>
+                    <CardFooter className="text-small font-medium text-gray-600 justify-between">
+                      <p>{item.name}</p>
+                    </CardFooter>
+                  </Card>
+                ))}
+            </div>
+          </div>
+        </section>
+
+        <aside className="mt-8 lg:col-span-1">
+          <Form name={pkgname} useGrid={false} />
+        </aside>
       </div>
     </>
   );

@@ -18,12 +18,18 @@ export default function Accord() {
   return (
     <Accordion
       selectedKeys={selectedKeys}
+      defaultExpandedKeys={["1"]}
       onSelectionChange={setSelectedKeys}
       className="bg-white px-4 shadow"
     >
       {itineraries &&
         itineraries.map((it) => (
-          <AccordionItem key={it.key} aria-label="Accordion 1" title={it.title}>
+          <AccordionItem
+            key={it.id}
+            aria-label={`accordion ${it.id}`}
+            title={it.title}
+            className="text-gray-500"
+          >
             {it.description}
           </AccordionItem>
         ))}

@@ -12,6 +12,7 @@ function HomePage() {
     fetch("https://adlizone.pythonanywhere.com/api/tours/")
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setPkgs(data);
       })
       .catch((error) => console.error(`Error caused by : ${error}`));
@@ -35,8 +36,8 @@ function HomePage() {
     <>
       <div className="relative">
         <Hero />
-        <div className="absolute -bottom-[30rem]  md:-bottom-28 mx-auto w-full">
-          <Form />
+        <div className="absolute -bottom-[32rem]  md:-bottom-28 mx-auto w-full">
+          <Form useGrid={true} />
         </div>
       </div>
 
@@ -51,7 +52,10 @@ function HomePage() {
             <span className="text-blue-500"> Tour Packages </span>
           </h1>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div
+          id="tour-package"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {pkgList}
         </div>
       </section>

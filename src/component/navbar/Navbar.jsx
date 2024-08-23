@@ -4,7 +4,6 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Link,
   Input,
   DropdownItem,
   DropdownTrigger,
@@ -12,6 +11,8 @@ import {
   DropdownMenu,
   Avatar,
 } from "@nextui-org/react";
+
+import { Link } from "react-router-dom";
 import { SearchIcon } from "../../assets/searchIcon";
 
 export default function Nav() {
@@ -22,18 +23,22 @@ export default function Nav() {
           <p className="font-bold text-gray-700">TourAndTravel</p>
         </NavbarBrand>
         <NavbarContent className="hidden sm:flex gap-3">
-          <NavbarItem isActive>
-            <Link aria-current="page" aria-label="home" href="#">
+          <NavbarItem>
+            <Link aria-label="home" to={"/"} className="hover:text-blue-500">
               Home
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link href="#" aria-label="package" color="foreground">
+            <a
+              href="#tour-package"
+              aria-label="package"
+              className="hover:text-blue-500"
+            >
               Packages
-            </Link>
+            </a>
           </NavbarItem>
           <NavbarItem>
-            <Link color="foreground" aria-label="contact" href="#">
+            <Link aria-label="contact" className="hover:text-blue-500">
               Contact us
             </Link>
           </NavbarItem>

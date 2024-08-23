@@ -2,8 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: rgb(249, 248, 248);
+  font-family: "Poppins", sans-serif;
 }
 
 .container {
