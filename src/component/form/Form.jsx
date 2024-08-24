@@ -6,47 +6,45 @@ import {
   DatePicker,
 } from "@nextui-org/react";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Form({ useGrid }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [tourPackage, setTourPackage] = useState("");
+  const [tourPackage, setTourPackage] = useState();
   const [adults, setAdults] = useState("");
   const [child, setChild] = useState("");
+  const [pkg, setPkg] = useState([]);
 
-  const handleSubmit = async (e) => {
+  useEffect(() => {
+    fetch("https://adlizone.pythonanywhere.com/api/tours/")
+      .then((response) => response.json())
+      .then((data) => setPkg(data))
+      .catch((error) => console.error(`Error caused by: ${error}`));
+  }, []);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch(
-        "https://adlizone.pythonanywhere.com/api/tours/bookings/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            customer_name: name,
-            customer_email: email,
-            customer_phone: phone,
-            adults: adults,
-            children: child,
-            tour_package: tourPackage,
-          }),
-        }
-      );
-
-      if (response.ok) {
-        alert("Booking successful");
-      } else {
-        alert("Booking failed");
-      }
-    } catch (error) {
-      console.error(`Error caused by: ${error}`);
-    }
+    fetch("https://adlizone.pythonanywhere.com/api/tours/bookings/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        customer_name: name,
+        customer_email: email,
+        customer_phone: phone,
+        adults: adults,
+        children: child,
+        tour_package: tourPackage,
+      }),
+    })
+      .then(() => alert("Booking successful"))
+      .catch((error) => console.error(`Error caused by: ${error}`));
   };
+
   const gridClasses = useGrid
     ? "grid grid-cols-1 md:grid-cols-4 gap-4 items-center justify-center"
     : "flex flex-col gap-2";
@@ -86,13 +84,14 @@ function Form({ useGrid }) {
           label="Select Tour package"
           className="mb-2"
           value={tourPackage}
-          onChange={(e) => setTourPackage(e.target.value)}
+          onChange={(e) => {
+            setTourPackage(e.target.value);
+          }}
         >
-          <SelectItem key="pahalgam">Pahalgam</SelectItem>
-          <SelectItem key="gulmarg">Gulmarg</SelectItem>
-          <SelectItem key="margantop">Margan Top</SelectItem>
-          <SelectItem key="Daksum">Daksum</SelectItem>
-          <SelectItem key="verinag">Verinag</SelectItem>
+          {pkg &&
+            pkg.map((item) => (
+              <SelectItem key={item.id}>{item.name}</SelectItem>
+            ))}
         </Select>
       </div>
 
