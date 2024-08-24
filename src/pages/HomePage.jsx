@@ -12,7 +12,6 @@ function HomePage() {
     fetch("https://adlizone.pythonanywhere.com/api/tours/")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setPkgs(data);
       })
       .catch((error) => console.error(`Error caused by : ${error}`));

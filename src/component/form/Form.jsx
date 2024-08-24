@@ -41,7 +41,19 @@ function Form({ useGrid }) {
         tour_package: tourPackage,
       }),
     })
-      .then(() => alert("Booking successful"))
+      .then((response) => {
+        if (response.ok) {
+          alert("Booking successful");
+          setName("");
+          setEmail("");
+          setPhone("");
+          setTourPackage("");
+          setAdults("");
+          setChild("");
+        } else {
+          alert("Booking failed");
+        }
+      })
       .catch((error) => console.error(`Error caused by: ${error}`));
   };
 
