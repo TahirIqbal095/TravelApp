@@ -7,8 +7,6 @@ import {
 } from "@nextui-org/react";
 
 import { useState } from "react";
-import { now, parseAbsoluteToLocal } from "@internationalized/date";
-import { format } from "date-fns";
 
 function Form({ useGrid }) {
   const [name, setName] = useState("");
@@ -17,9 +15,6 @@ function Form({ useGrid }) {
   const [tourPackage, setTourPackage] = useState("");
   const [adults, setAdults] = useState("");
   const [child, setChild] = useState("");
-  const [date, setDate] = useState(
-    parseAbsoluteToLocal("2024-04-07T18:45:22Z")
-  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,13 +28,12 @@ function Form({ useGrid }) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            name: name,
-            email: email,
-            phone: phone,
+            customer_name: name,
+            customer_email: email,
+            customer_phone: phone,
             adults: adults,
-            child: child,
-            date: date,
-            tourPackage: tourPackage,
+            children: child,
+            tour_package: tourPackage,
           }),
         }
       );
@@ -57,14 +51,12 @@ function Form({ useGrid }) {
     ? "grid grid-cols-1 md:grid-cols-4 gap-4 items-center justify-center"
     : "flex flex-col gap-2";
 
-  console.log(date);
-
   return (
     <form
       onSubmit={handleSubmit}
       action="submit"
       method="post"
-      className="block px-5 py-8 bg-white md:mx-10 shadow rounded"
+      className="block px-5 py-8 bg-white mx-4 md:mx-10 shadow rounded"
     >
       <div className={gridClasses}>
         <Input
@@ -82,10 +74,11 @@ function Form({ useGrid }) {
           onChange={(e) => setEmail(e.target.value)}
         />
         <Input
-          type="number"
+          type="tel"
           variant="bordered"
           label="Phone Number"
           value={phone}
+          maxLength={10}
           onChange={(e) => setPhone(e.target.value)}
         />
 
@@ -114,6 +107,11 @@ function Form({ useGrid }) {
           <SelectItem key="3">3</SelectItem>
           <SelectItem key="4">4</SelectItem>
           <SelectItem key="5">5</SelectItem>
+          <SelectItem key="6">6</SelectItem>
+          <SelectItem key="7">7</SelectItem>
+          <SelectItem key="8">8</SelectItem>
+          <SelectItem key="9">9</SelectItem>
+          <SelectItem key="10">10</SelectItem>
         </Select>
 
         <Select
@@ -122,26 +120,32 @@ function Form({ useGrid }) {
           value={child}
           onChange={(e) => setChild(e.target.value)}
         >
+          <SelectItem key="0">0</SelectItem>
           <SelectItem key="1">1</SelectItem>
           <SelectItem key="2">2</SelectItem>
           <SelectItem key="3">3</SelectItem>
           <SelectItem key="4">4</SelectItem>
           <SelectItem key="5">5</SelectItem>
+          <SelectItem key="6">6</SelectItem>
+          <SelectItem key="7">7</SelectItem>
+          <SelectItem key="8">8</SelectItem>
+          <SelectItem key="9">9</SelectItem>
+          <SelectItem key="10">10</SelectItem>
         </Select>
 
-        <DatePicker
+        {/* <DatePicker
           aria-label="select a date"
           className="max-w-md"
           granularity="day"
           value={date}
           onChange={(e) => {
-            // const formattedDate = format(
-            //   new Date(e.day, e.month, e.year),
-            //   "dd-mm-yyyy"
-            // );
+            const formattedDate = format(
+              new Date(e.day, e.month, e.year),
+              "dd-mm-yyyy"
+            );
             setDate(e);
           }}
-        />
+        /> */}
 
         <Button type="submit" color="primary" className="mt-2 md:mt-0">
           Send Enquiry
