@@ -13,6 +13,9 @@ function DetailPage() {
   const [destination, setDestination] = useState([]);
 
   useEffect(() => {
+    // scroll to top
+    window.scrollTo(0, 0);
+
     const fetchData = async () => {
       try {
         const [pkgResponse, categoriesResponse, destinationsResponse] =
