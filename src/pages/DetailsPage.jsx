@@ -105,7 +105,9 @@ function DetailPage() {
                   </div>
                 ))}
             </div>
-            <p className="text-base text-gray-500 mt-2">{pkg.description}</p>
+            <p className="text-sm md:text-base text-gray-500 mt-2">
+              {pkg.description}
+            </p>
           </div>
 
           <div>
@@ -113,7 +115,9 @@ function DetailPage() {
           </div>
 
           <div className="bg-white p-4 shadow mt-8">
-            <h2 className="text-2xl mb-3 text-gray-700">Destinations</h2>
+            <h2 className="text-2xl font-bold mb-4 text-gray-700">
+              Places you will <span className="text-blue-500">Explore</span>
+            </h2>
 
             <div className="gap-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {destination &&

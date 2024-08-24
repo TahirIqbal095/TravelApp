@@ -11,16 +11,27 @@ export default function Accord() {
   React.useEffect(() => {
     fetch(`https://adlizone.pythonanywhere.com/api/tours/${id}/itineraries/`)
       .then((res) => res.json())
-      .then((data) => setItineraries(data))
+      .then((data) => {
+        setItineraries(data);
+      })
       .catch((err) => console.error(`Error caused by : ${err}`));
   }, []);
+
+  const itemClasses = {
+    base: "py-0 w-full",
+    title: "font-medium text-medium text-gray-800",
+    trigger:
+      "px-2 py-0 data-[hover=true]:bg-default-100 rounded-lg h-14 flex items-center",
+    indicator: "text-medium",
+    content: "text-small md:text-medium px-2",
+  };
 
   return (
     <Accordion
       selectedKeys={selectedKeys}
       defaultExpandedKeys={["1"]}
       onSelectionChange={setSelectedKeys}
-      className="bg-white px-4 shadow"
+      itemClasses={itemClasses}
     >
       {itineraries &&
         itineraries.map((it) => (
