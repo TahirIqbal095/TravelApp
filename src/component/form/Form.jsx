@@ -6,7 +6,7 @@ import {
   DatePicker,
 } from "@nextui-org/react";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 function Form({ useGrid }) {
   const [name, setName] = useState("");
@@ -16,6 +16,24 @@ function Form({ useGrid }) {
   const [adults, setAdults] = useState("");
   const [child, setChild] = useState("");
   const [pkg, setPkg] = useState([]);
+  const [value, setValue] = useState("example@mail.com");
+
+  // email validation
+  const validateEmail = (value) =>
+    value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+
+  const isInvalid = useMemo(() => {
+    if (email === "") return false;
+    return validateEmail(email) ? false : true;
+  }, [email]);
+
+  // phone number validation
+  const validatePhone = (value) => value.match(/^[0-9]{10}$/);
+
+  const isPhoneInvalid = useMemo(() => {
+    if (phone === "") return false;
+    return validatePhone(phone) ? false : true;
+  });
 
   useEffect(() => {
     fetch("https://adlizone.pythonanywhere.com/api/tours/")
@@ -83,6 +101,9 @@ function Form({ useGrid }) {
           type="email"
           variant="bordered"
           label="Email"
+          isInvalid={isInvalid}
+          color={isInvalid ? "danger" : "default"}
+          errorMessage="Please enter a valid email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -91,6 +112,9 @@ function Form({ useGrid }) {
           type="tel"
           variant="bordered"
           label="Phone Number"
+          isInvalid={isPhoneInvalid}
+          color={isPhoneInvalid ? "danger" : "default"}
+          errorMessage="Please enter a valid phone number"
           required
           value={phone}
           maxLength={10}

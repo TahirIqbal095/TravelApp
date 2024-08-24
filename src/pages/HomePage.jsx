@@ -35,7 +35,7 @@ function HomePage() {
     <>
       <div className="relative">
         <Hero />
-        <div className="absolute -bottom-[32rem]  md:-bottom-28 mx-auto w-full">
+        <div className="absolute -bottom-[34rem]  md:-bottom-28 mx-auto w-full">
           <Form useGrid={true} />
         </div>
       </div>

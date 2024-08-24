@@ -6,7 +6,7 @@ function Hero() {
       <div className="absolute inset-0 bg-gray-900/55"></div>
 
       <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
-        <div className="max-w-xl  ltr:sm:text-left rtl:sm:text-right">
+        <div className="max-w-3xl">
           <h1 className="text-3xl font-extrabold text-white sm:text-5xl">
             Let us plan you a perfect
             <strong className="block font-extrabold text-blue-500">
