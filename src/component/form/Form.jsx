@@ -27,21 +27,28 @@ function Form({ useGrid }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Validation check
+    if (!tourPackage || !phone || !name) {
+      alert("Please fill in all the fields before submitting the form.");
+      return;
+    }
+
     fetch("https://adlizone.pythonanywhere.com/api/tours/bookings/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        customer_name: name,
-        customer_email: email,
-        customer_phone: phone,
-        adults: adults,
-        children: child,
-        tour_package: tourPackage,
+        tourPackage,
+        adults,
+        child,
       }),
     })
-      .then(() => alert("Booking successful"))
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Booking successful:", data);
+        // Handle successful booking
+      })
       .catch((error) => console.error(`Error caused by: ${error}`));
   };
 
@@ -54,7 +61,9 @@ function Form({ useGrid }) {
       onSubmit={handleSubmit}
       action="submit"
       method="post"
-      className="block px-5 py-8 bg-white mx-4 md:mx-10 shadow rounded"
+      className={`block px-5 py-8 bg-white ${
+        useGrid ? "mx-4" : ""
+      } md:mx-10 shadow rounded`}
     >
       <div className={gridClasses}>
         <Input
@@ -132,19 +141,7 @@ function Form({ useGrid }) {
           <SelectItem key="10">10</SelectItem>
         </Select>
 
-        {/* <DatePicker
-          aria-label="select a date"
-          className="max-w-md"
-          granularity="day"
-          value={date}
-          onChange={(e) => {
-            const formattedDate = format(
-              new Date(e.day, e.month, e.year),
-              "dd-mm-yyyy"
-            );
-            setDate(e);
-          }}
-        /> */}
+        <DatePicker label="Choose a Date" />
 
         <Button type="submit" color="primary" className="mt-2 md:mt-0">
           Send Enquiry
