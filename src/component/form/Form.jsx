@@ -27,28 +27,21 @@ function Form({ useGrid }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validation check
-    if (!tourPackage || !phone || !name) {
-      alert("Please fill in all the fields before submitting the form.");
-      return;
-    }
-
     fetch("https://adlizone.pythonanywhere.com/api/tours/bookings/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        tourPackage,
-        adults,
-        child,
+        customer_name: name,
+        customer_email: email,
+        customer_phone: phone,
+        adults: adults,
+        children: child,
+        tour_package: tourPackage,
       }),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Booking successful:", data);
-        // Handle successful booking
-      })
+      .then(() => alert("Booking successful"))
       .catch((error) => console.error(`Error caused by: ${error}`));
   };
 
@@ -70,6 +63,7 @@ function Form({ useGrid }) {
           type="text"
           variant="bordered"
           label="Name"
+          required
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -77,6 +71,7 @@ function Form({ useGrid }) {
           type="email"
           variant="bordered"
           label="Email"
+          required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -84,6 +79,7 @@ function Form({ useGrid }) {
           type="tel"
           variant="bordered"
           label="Phone Number"
+          required
           value={phone}
           maxLength={10}
           onChange={(e) => setPhone(e.target.value)}
@@ -92,6 +88,7 @@ function Form({ useGrid }) {
         <Select
           label="Select Tour package"
           className="mb-2"
+          required
           value={tourPackage}
           onChange={(e) => {
             setTourPackage(e.target.value);
