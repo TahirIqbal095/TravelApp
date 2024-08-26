@@ -14,13 +14,14 @@ import {
 
 import { Link } from "react-router-dom";
 import { SearchIcon } from "../../assets/searchIcon";
+import { assets } from "../../assets/assets";
 
 export default function Nav() {
   return (
     <Navbar>
       <NavbarContent justify="start">
         <NavbarBrand>
-          <p className="font-bold text-gray-700">TourAndTravel</p>
+          <img src={assets.logo} alt="" className="w-28" />
         </NavbarBrand>
         <NavbarContent className="hidden sm:flex gap-3">
           <NavbarItem>

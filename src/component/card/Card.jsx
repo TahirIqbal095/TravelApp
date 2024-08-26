@@ -25,11 +25,11 @@ function Card(props) {
   });
   return (
     <div className="rounded-xl shadow-lg px-4 py-6 mx-auto border bg-white">
-      <div className="w-full max-h-60 overflow-hidden rounded-xl">
+      <div className="w-full h-60 overflow-hidden rounded-xl">
         <img
           src={props.img}
           alt={props.name}
-          className="rounded-xl object-cover"
+          className="rounded-xl object-cover w-full h-full"
         />
       </div>
       <div className="bg-white flex flex-col space-y-2 py-4">
@@ -47,7 +47,7 @@ function Card(props) {
           </div>
         </h3>
         <p className="md:text-base text-gray-500 text-base">
-          {props.description.split(" ").slice(0, 10).join(" ")}
+          {props.description.split(" ").slice(0, 14).join(" ")}
           <Link to={`package/details/${props.id}`} className="text-indigo-700">
             ...more
           </Link>
