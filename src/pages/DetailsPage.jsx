@@ -9,7 +9,6 @@ import Card from "../component/card/Card";
 function DetailPage() {
   const { id } = useParams();
   const [pkg, setPkg] = useState([]);
-  const [pkgname, setPkgName] = useState([]);
   const [categories, setCategories] = useState([]);
   const [cards, setCards] = useState([]);
 
@@ -35,9 +34,6 @@ function DetailPage() {
         setPkg(pkgData);
         setCategories(categoriesData);
         setCards(cardData);
-
-        const packageNames = pkgData.name;
-        setPkgName(packageNames);
       } catch (err) {
         console.error(`Error caused by: ${err}`);
       }
@@ -140,7 +136,7 @@ function DetailPage() {
         </section>
 
         <aside className="mt-8 lg:col-span-1">
-          <Form name={pkgname} useGrid={false} />
+          <Form useGrid={false} />
         </aside>
       </div>
 

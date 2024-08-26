@@ -34,7 +34,7 @@ function Card(props) {
       </div>
       <div className="bg-white flex flex-col space-y-2 py-4">
         <div className="flex justify-between item-center">
-          <p className="text-gray-500 font-medium">Tour Package</p>
+          <p className="text-gray-500 font-medium text-sm">Tour Package</p>
 
           <div className="bg-gray-200 px-3 py-1 rounded-full text-xs font-medium text-gray-800">
             {props.duration} days
@@ -52,10 +52,7 @@ function Card(props) {
             ...more
           </Link>
         </p>
-        <p className="text-xl font-black text-gray-800">
-          ₹{props.price}
-          <span className="font-normal text-gray-600 text-base">/night</span>
-        </p>
+        <p className="text-xl font-black text-gray-800">₹{props.price}</p>
       </div>
       <div className="">
         <Link
