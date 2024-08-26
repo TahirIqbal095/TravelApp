@@ -21,7 +21,9 @@ export default function Nav() {
     <Navbar>
       <NavbarContent justify="start">
         <NavbarBrand>
-          <img src={assets.logo} alt="" className="w-28" />
+          <Link to={"/"}>
+            <img src={assets.logo} alt="" className="w-28" />
+          </Link>
         </NavbarBrand>
         <NavbarContent className="hidden sm:flex gap-3">
           <NavbarItem>

@@ -2,7 +2,10 @@ import "./hero.css";
 
 function Hero() {
   return (
-    <section className="hero-section | relative bg-cover bg-center bg-no-repeat">
+    <section
+      id="hero"
+      className="hero-section | relative bg-cover bg-center bg-no-repeat"
+    >
       <div className="absolute inset-0 bg-gray-900/55"></div>
 
       <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
