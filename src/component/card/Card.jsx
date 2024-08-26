@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+import { AsyncImage } from "loadable-image";
+import { Blur, Grow } from "transitions-kit";
+
 function Card(props) {
   const [categories, setCategories] = useState([]);
 
@@ -27,10 +30,12 @@ function Card(props) {
   return (
     <div className="rounded-xl shadow-lg px-4 py-6 mx-auto border bg-white">
       <div className="w-full h-60 overflow-hidden rounded-xl">
-        <img
+        <AsyncImage
           src={props.img}
           alt={props.name}
           className="rounded-xl object-cover w-full h-full"
+          // Transition={(props) => <Blur radius={10} {...props} />}
+          loader={<div style={{ background: "#94b8f2" }} />}
         />
       </div>
       <div className="bg-white flex flex-col space-y-2 py-4">

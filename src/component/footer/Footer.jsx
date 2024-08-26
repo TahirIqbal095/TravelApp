@@ -2,7 +2,7 @@ import { assets } from "../../assets/assets";
 
 function Footer() {
   return (
-    <footer class="w-full py-4 bg-white">
+    <footer class="w-full py-2 bg-white">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto">
           <a href="#hero" className="flex justify-center">
@@ -103,7 +103,7 @@ function Footer() {
               </svg>
             </a>
           </div>
-          <span class="text-lg text-gray-500 text-center block">
+          <span class="text-xs text-gray-500 text-center block">
             ©<a href="https://pagedone.io/">Mount Eco</a> 2024, All rights
             reserved.
           </span>

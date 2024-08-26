@@ -6,6 +6,9 @@ import Form from "../component/form/Form";
 import SmallCard from "../component/smallcard/SmallCard";
 import Card from "../component/card/Card";
 
+import { AsyncImage } from "loadable-image";
+import { Blur, Grow } from "transitions-kit";
+
 function DetailPage() {
   const { id } = useParams();
   const [pkg, setPkg] = useState([]);
@@ -72,10 +75,11 @@ function DetailPage() {
       <div className=" container lg:grid lg:grid-cols-3 mb-4">
         <section className="md:col-span-2 space-y-8 mt-8">
           <div>
-            <img
+            <AsyncImage
               src={pkg.image}
-              alt={pkg.name}
-              className="w-full max-h-60 object-cover"
+              style={{ width: "100%", height: 250 }}
+              Transition={(props) => <Blur radius={10} {...props} />}
+              loader={<div style={{ background: "#94b8f2" }} />}
             />
           </div>
           <div className="bg-white shadow p-6">
@@ -139,6 +143,8 @@ function DetailPage() {
           <Form useGrid={false} />
         </aside>
       </div>
+
+      <div className="container border-b-4 border-gray-200 mt-16"></div>
 
       <section className="container my-12">
         <h1 className="text-3xl font-bold mb-4 text-gray-700">
