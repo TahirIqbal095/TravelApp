@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 
 import Accord from "../component/accordion/Accordion";
 import Form from "../component/form/Form";
+import SmallCard from "../component/smallcard/SmallCard";
+import Card from "../component/card/Card";
 
 function DetailPage() {
   const { id } = useParams();
   const [pkg, setPkg] = useState([]);
   const [pkgname, setPkgName] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [destination, setDestination] = useState([]);
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
     // scroll to top
@@ -18,24 +19,22 @@ function DetailPage() {
 
     const fetchData = async () => {
       try {
-        const [pkgResponse, categoriesResponse, destinationsResponse] =
+        const [pkgResponse, categoriesResponse, cardResponse] =
           await Promise.all([
             fetch(`https://adlizone.pythonanywhere.com/api/tours/${id}/`),
             fetch(
               `https://adlizone.pythonanywhere.com/api/tours/${id}/categories/`
             ),
-            fetch(
-              `https://adlizone.pythonanywhere.com/api/tours/${id}/destinations/`
-            ),
+            fetch(`https://adlizone.pythonanywhere.com/api/tours/`),
           ]);
 
         const pkgData = await pkgResponse.json();
         const categoriesData = await categoriesResponse.json();
-        const destinationsData = await destinationsResponse.json();
+        const cardData = await cardResponse.json();
 
         setPkg(pkgData);
         setCategories(categoriesData);
-        setDestination(destinationsData);
+        setCards(cardData);
 
         const packageNames = pkgData.name;
         setPkgName(packageNames);
@@ -55,6 +54,22 @@ function DetailPage() {
       {cat.name}
     </div>
   ));
+
+  const cardList = cards.map((card) =>
+    card.id != id ? (
+      <Card
+        id={card.id}
+        key={card.id}
+        name={card.name}
+        description={card.description}
+        duration={card.duration}
+        price={card.price}
+        img={card.image}
+      />
+    ) : (
+      ""
+    )
+  );
 
   return (
     <>
@@ -119,29 +134,7 @@ function DetailPage() {
             </h2>
 
             <div className="gap-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {destination &&
-                destination.map((item) => (
-                  <Card
-                    shadow="sm"
-                    key={item.id}
-                    isPressable
-                    onPress={() => console.log("item pressed")}
-                  >
-                    <CardBody className="overflow-visible p-0">
-                      <Image
-                        shadow="sm"
-                        radius="lg"
-                        width="100%"
-                        alt={item.name}
-                        className="w-full object-cover h-[140px]"
-                        src={item.image}
-                      />
-                    </CardBody>
-                    <CardFooter className="text-small font-medium text-gray-600 justify-between">
-                      <p>{item.name}</p>
-                    </CardFooter>
-                  </Card>
-                ))}
+              <SmallCard />
             </div>
           </div>
         </section>
@@ -150,6 +143,16 @@ function DetailPage() {
           <Form name={pkgname} useGrid={false} />
         </aside>
       </div>
+
+      <section className="container my-12">
+        <h1 className="text-3xl font-bold mb-4 text-gray-700">
+          <span className="text-blue-500">Explore</span> more{" "}
+          <span>&#10549;</span>
+        </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {cardList}
+        </div>
+      </section>
     </>
   );
 }
