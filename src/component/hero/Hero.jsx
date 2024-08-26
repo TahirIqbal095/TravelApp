@@ -8,22 +8,21 @@ function Hero() {
     >
       <div className="absolute inset-0 bg-gray-900/55"></div>
 
-      <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
-        <div className="max-w-3xl">
-          <h1 className="text-3xl font-extrabold text-white sm:text-5xl">
+      <div className="relative mx-auto max-w-screen-xl px-4 py-32">
+        <div className="max-w-3xl mx-auto flex flex-col justify-center items-center">
+          <h1 className="text-5xl md:text-6xl text-center font-extrabold text-white leading-[3.5rem]">
             Let us plan you a perfect
             <strong className="block font-extrabold text-blue-500">
-              {" "}
-              Kashmir Holiday.{" "}
+              Kashmir Holiday
             </strong>
           </h1>
 
-          <p className="mt-4 max-w-lg text-white sm:text-xl/relaxed">
+          <p className="mt-4 max-w-[42ch] text-center text-gray-100 text-lg">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
-            illo tenetur fuga ducimus numquam ea!
+            illo tenetur fuga
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4 text-center">
+          <div className="mt-8 flex flex-col text-center gap-4">
             <a
               href="#tour-package"
               className="block w-full rounded bg-blue-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"

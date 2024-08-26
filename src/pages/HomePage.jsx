@@ -40,11 +40,11 @@ function HomePage() {
         </div>
       </div>
 
-      <section className="mt-[35rem] md:mt-44">
+      <section className="mt-[38rem] md:mt-52">
         <CardGrid />
       </section>
 
-      <section className="container | my-6 px-2 md:px-0 py-8">
+      <section className="container | mt-28 px-2 md:px-0 py-8">
         <div className="mb-4">
           <h1 className=" text-3xl md:text-4xl font-bold text-gray-600">
             Explore our
