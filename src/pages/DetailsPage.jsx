@@ -143,7 +143,7 @@ function DetailPage() {
       <section className="container my-12">
         <h1 className="text-3xl font-bold mb-4 text-gray-700">
           <span className="text-blue-500">Explore</span> more{" "}
-          <span>&#10549;</span>
+          <span className="text-3xl">&#10549;</span>
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {cardList}
