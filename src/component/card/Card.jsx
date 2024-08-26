@@ -4,6 +4,15 @@ import { Link } from "react-router-dom";
 function Card(props) {
   const [categories, setCategories] = useState([]);
 
+  useEffect(() => {
+    fetch(
+      `https://adlizone.pythonanywhere.com/api/tours/${props.id}/categories/`
+    )
+      .then((res) => res.json())
+      .then((data) => setCategories(data))
+      .catch((err) => console.log(`Error caused by : ${err}`));
+  });
+
   const categoriesList =
     categories &&
     categories.map((cat) => (
@@ -15,14 +24,6 @@ function Card(props) {
       </div>
     ));
 
-  useEffect(() => {
-    fetch(
-      `https://adlizone.pythonanywhere.com/api/tours/${props.id}/categories/`
-    )
-      .then((res) => res.json())
-      .then((data) => setCategories(data))
-      .catch((err) => console.log(`Error caused by : ${err}`));
-  });
   return (
     <div className="rounded-xl shadow-lg px-4 py-6 mx-auto border bg-white">
       <div className="w-full h-60 overflow-hidden rounded-xl">
@@ -48,7 +49,7 @@ function Card(props) {
         </h3>
         <p className="md:text-base text-gray-500 text-base">
           {props.description.split(" ").slice(0, 14).join(" ")}
-          <Link to={`package/details/${props.id}`} className="text-indigo-700">
+          <Link to={`/package/details/${props.id}`} className="text-indigo-700">
             ...more
           </Link>
         </p>
