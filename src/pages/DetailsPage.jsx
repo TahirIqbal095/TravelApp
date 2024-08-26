@@ -47,6 +47,15 @@ function DetailPage() {
     fetchData();
   }, [id]);
 
+  const categoriesList = categories.map((cat) => (
+    <div
+      key={cat.id}
+      className="bg-green-200 text-green-700 border-1 border-green-700 text-[0.7rem] rounded-full px-2 py-1"
+    >
+      {cat.name}
+    </div>
+  ));
+
   return (
     <>
       <div className=" container lg:grid lg:grid-cols-3 mb-4">
@@ -94,17 +103,7 @@ function DetailPage() {
             <h2 className="text-lg md:text-xl text-gray-700 font-bold">
               Tour Description
             </h2>
-            <div className="flex gap-1 flex-wrap mt-1">
-              {categories &&
-                categories.map((cat) => (
-                  <div
-                    key={cat.id}
-                    className="bg-green-200 text-green-700 border-1 border-green-700 text-[0.7rem] rounded-full px-2 py-1"
-                  >
-                    {cat.name}
-                  </div>
-                ))}
-            </div>
+            <div className="flex gap-1 flex-wrap mt-1">{categoriesList}</div>
             <p className="text-sm md:text-base text-gray-500 mt-2">
               {pkg.description}
             </p>
