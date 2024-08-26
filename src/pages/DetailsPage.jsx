@@ -72,7 +72,7 @@ function DetailPage() {
 
   return (
     <>
-      <div className=" container lg:grid lg:grid-cols-3 mb-4">
+      <div className="container lg:grid lg:grid-cols-3 items-start">
         <section className="md:col-span-2 space-y-8 mt-8">
           <div>
             <AsyncImage
@@ -139,17 +139,30 @@ function DetailPage() {
           </div>
         </section>
 
-        <aside className="mt-8 lg:col-span-1">
+        <aside className="mt-8 lg:col-span-1 sticky top-0">
           <Form useGrid={false} />
         </aside>
       </div>
 
-      <div className="container border-b-4 border-gray-200 mt-16"></div>
+      <div class="inline-flex items-center justify-center w-full mt-12">
+        <hr class="w-72 h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700" />
+        <div class="absolute px-4 -translate-x-1/2 bg-[#f9f8f8]  left-1/2 dark:bg-gray-900">
+          <svg
+            class="w-4 h-4 text-gray-700 dark:text-gray-300"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 18 14"
+          >
+            <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
+          </svg>
+        </div>
+      </div>
 
       <section className="container my-12">
         <h1 className="text-3xl font-bold mb-4 text-gray-700">
           <span className="text-blue-500">Explore</span> more{" "}
-          <span className="text-3xl">&#10549;</span>
+          <span className="text-4xl">&#10549;</span>
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {cardList}
