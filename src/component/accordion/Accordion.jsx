@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Accordion, AccordionItem } from "@nextui-org/react";
 
 export default function Accord() {
-  const [selectedKeys, setSelectedKeys] = React.useState(new Set(["1"]));
+  // const [selectedKeys, setSelectedKeys] = React.useState(new Set(["1"]));
   const [itineraries, setItineraries] = React.useState([]);
 
   const { id } = useParams();
@@ -15,7 +15,7 @@ export default function Accord() {
         setItineraries(data);
       })
       .catch((err) => console.error(`Error caused by : ${err}`));
-  }, []);
+  }, [id]);
 
   const itemClasses = {
     base: "py-0 w-full",
@@ -28,9 +28,9 @@ export default function Accord() {
 
   return (
     <Accordion
-      selectedKeys={selectedKeys}
+      // selectedKeys={selectedKeys}
+      // onSelectionChange={setSelectedKeys}
       defaultExpandedKeys={["1"]}
-      onSelectionChange={setSelectedKeys}
       itemClasses={itemClasses}
     >
       {itineraries &&
