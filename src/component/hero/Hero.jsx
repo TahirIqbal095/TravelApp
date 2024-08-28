@@ -10,7 +10,7 @@ function Hero() {
 
       <div className="relative mx-auto max-w-screen-xl px-4 py-32">
         <div className="max-w-3xl mx-auto flex flex-col justify-center items-center">
-          <h1 className="text-5xl md:text-6xl text-center font-extrabold text-white leading-[3.5rem]">
+          <h1 className="text-5xl md:text-6xl text-center font-extrabold text-white">
             Let us plan you a perfect
             <strong className="block font-extrabold text-blue-500">
               Kashmir Holiday
