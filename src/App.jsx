@@ -1,23 +1,28 @@
 import HomePage from "./pages/HomePage.jsx";
 import SharedLayout from "./pages/SharedLayout.jsx";
 import DetailPage from "./pages/DetailsPage.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  Route,
+  RouterProvider,
+  createRoutesFromElements,
+  createBrowserRouter,
+} from "react-router-dom";
 
 import "./index.css";
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<SharedLayout />} errorElement={<ErrorPage />}>
+      <Route index element={<HomePage />} />
+      <Route path="/package/details/:id" element={<DetailPage />} />
+    </Route>
+  )
+);
+
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="/package/details/:id" element={<DetailPage />} />
-          {/* <Route path="package/details/:id/booknow" element={<DetailPage />} /> */}
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
