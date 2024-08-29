@@ -1,3 +1,15 @@
 .hero-section {
   background-image: url("../../assets/hero.jpg");
 }
+
+.hero-heading {
+  font-size: 3.5rem;
+  line-height: 4rem;
+}
+
+@media (min-width: 768px) {
+  .hero-heading {
+    font-size: 4.5rem;
+    line-height: 5.2rem;
+  }
+}

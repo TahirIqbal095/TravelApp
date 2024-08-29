@@ -7,6 +7,8 @@ import HomePage from "./pages/HomePage.jsx";
 import SharedLayout from "./pages/SharedLayout.jsx";
 import DetailPage from "./pages/DetailsPage.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
+import PackagePage from "./pages/PackagePage.jsx";
+import AboutUs from "./pages/AboutUs.jsx";
 
 import "./index.css";
 
@@ -24,6 +26,14 @@ const router = createBrowserRouter([
       {
         path: "package/details/:id",
         element: <DetailPage />,
+      },
+      {
+        path: "packages",
+        element: <PackagePage />,
+      },
+      {
+        path: "about-us",
+        element: <AboutUs />,
       },
     ],
   },

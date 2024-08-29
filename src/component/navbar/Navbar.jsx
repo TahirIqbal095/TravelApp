@@ -4,95 +4,84 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Input,
-  DropdownItem,
-  DropdownTrigger,
-  Dropdown,
-  DropdownMenu,
-  Avatar,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem,
+  Button,
 } from "@nextui-org/react";
-
-import { Link } from "react-router-dom";
-import { SearchIcon } from "../../assets/searchIcon";
+import { Link, NavLink } from "react-router-dom";
 import { assets } from "../../assets/assets";
 
 export default function Nav() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const menuItems = [
+    "Home",
+    "Packages",
+    "Offers",
+    "Trending packages",
+    "J&k Tourism",
+    "Offers",
+    "Contact Us",
+    "Log Out",
+  ];
+
   return (
-    <Navbar>
+    <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth="xl">
       <NavbarContent justify="start">
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        />
         <NavbarBrand>
-          <Link to={"/"}>
-            <img src={assets.logo} alt="" className="w-28" />
+          <Link to={"/"} className="flex items-center">
+            <img src={assets.logo} alt="" className="w-16" />
+            <p className="font-bold text-inherit">Mount Eco</p>
           </Link>
         </NavbarBrand>
-        <NavbarContent className="hidden sm:flex gap-3">
-          <NavbarItem>
-            <Link aria-label="home" to={"/"} className="hover:text-blue-500">
-              Home
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <a
-              href="#tour-package"
-              aria-label="package"
-              className="hover:text-blue-500"
-            >
-              Packages
-            </a>
-          </NavbarItem>
-          <NavbarItem>
-            <Link aria-label="contact" className="hover:text-blue-500">
-              Contact us
-            </Link>
-          </NavbarItem>
-        </NavbarContent>
       </NavbarContent>
 
-      <NavbarContent as="div" className="items-center" justify="end">
-        <Input
-          classNames={{
-            base: "max-w-full sm:max-w-[10rem] h-10",
-            mainWrapper: "h-full",
-            input: "text-small",
-            inputWrapper:
-              "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-          }}
-          placeholder="search..."
-          size="sm"
-          startContent={<SearchIcon size={18} />}
-          type="search"
-        />
-        <Dropdown placement="bottom-end">
-          <DropdownTrigger>
-            <Avatar
-              isBordered
-              as="button"
-              className="transition-transform"
-              color="primary"
-              name="Jason Hughes"
-              size="sm"
-              src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-            />
-          </DropdownTrigger>
-          <DropdownMenu aria-label="Profile Actions" variant="flat">
-            <DropdownItem key="profile" className="h-14 gap-2">
-              <p className="font-semibold" aria-label="Signed in as">
-                Signed in as
-              </p>
-              <p className="font-semibold" aria-label="Signed in as">
-                tahir@example.com
-              </p>
-            </DropdownItem>
-            <DropdownItem key="settings">Home</DropdownItem>
-            <DropdownItem key="team_settings">Tour Packages</DropdownItem>
-            <DropdownItem key="analytics">About Us</DropdownItem>
-            <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-            <DropdownItem key="logout" color="danger">
-              Log Out
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarItem>
+          <NavLink to={"/"}>Home</NavLink>
+        </NavbarItem>
+        <NavbarItem>
+          <NavLink to={"/packages"}>Packages</NavLink>
+        </NavbarItem>
+        <NavbarItem>
+          <NavLink to={"/about-us"}>About Us</NavLink>
+        </NavbarItem>
       </NavbarContent>
+      <NavbarContent justify="end">
+        <NavbarItem className="hidden lg:flex">
+          <Link href="#">Login</Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Button as={Link} color="primary" href="#" variant="flat">
+            Sign Up
+          </Button>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarMenu>
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item}-${index}`}>
+            <Link
+              color={
+                index === 2
+                  ? "primary"
+                  : index === menuItems.length - 1
+                  ? "danger"
+                  : "foreground"
+              }
+              className="w-full"
+              to={"/"}
+              size="lg"
+            >
+              {item}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
     </Navbar>
   );
 }

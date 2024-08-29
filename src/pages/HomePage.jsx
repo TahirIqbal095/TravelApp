@@ -81,8 +81,8 @@ function HomePage() {
           Why Choose us?
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-3 mt-8">
-          <div className="text-center bg-[#f6f2e2] px-8 py-14 rounded shadow space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-8">
+          <div className="text-center bg-[#f6f2e2] px-2 md:px-8 py-6 md:py-12 rounded shadow space-y-8">
             <p className="text-gray-700 ">
               <span className="material-symbols-outlined | text-6xl">
                 psychology
@@ -98,7 +98,7 @@ function HomePage() {
             </p>
           </div>
 
-          <div className="text-center bg-[#f3e7e6] px-8 py-14 rounded shadow space-y-8">
+          <div className="text-center bg-[#f3e7e6] px-2 md:px-8 py-6 md:py-12 rounded shadow space-y-8">
             <p className="text-gray-700">
               <span class="material-symbols-outlined | text-6xl">groups_2</span>
             </p>
@@ -113,7 +113,7 @@ function HomePage() {
             </p>
           </div>
 
-          <div className="text-center bg-[#dce8ee]  px-8 py-14 rounded shadow space-y-8">
+          <div className="text-center bg-[#dce8ee] px-2 md:px-8 py-6 md:py-12 rounded shadow space-y-8">
             <p className="text-gray-700">
               <span class="material-symbols-outlined | text-6xl">paid</span>
             </p>
@@ -124,12 +124,11 @@ function HomePage() {
               With Tour My India, your vacation is not just about sightseeing;
               it's about creating memories that last a lifetime. Our holiday
               packages are hassle-free and designed with a focus on value for
-              money. Trust us to weave unforgettable experiences into your
-              journey, ensuring every moment you spend with us is well worth it.
+              money.
             </p>
           </div>
 
-          <div className="text-center bg-[#d8e2d8] px-8 py-14 rounded shadow space-y-8">
+          {/* <div className="text-center bg-[#d8e2d8] px-2 md:px-8 py-6 md:py-12 rounded shadow space-y-8">
             <p className="text-gray-700">
               <span class="material-symbols-outlined | text-6xl">
                 source_environment
@@ -143,7 +142,7 @@ function HomePage() {
               hotels. Our partners consistently deliver top-notch service,
               ensuring an exceptional experience for our guests.
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
