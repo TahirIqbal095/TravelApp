@@ -5,6 +5,8 @@ import gridimg4 from "./gridimg4.jpg";
 import gridimg5 from "./gridimg5.jpg";
 import logo from "./logo.png";
 import hero from "./hero.jpg";
+import whatsapp from "./whatsapp.png";
+import testimonialuser from "./testimonialuser.svg";
 
 export const assets = {
   gridimg1,
@@ -14,4 +16,6 @@ export const assets = {
   gridimg5,
   hero,
   logo,
+  whatsapp,
+  testimonialuser,
 };

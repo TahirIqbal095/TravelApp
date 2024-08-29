@@ -5,6 +5,9 @@ import CardGrid from "../component/cardgrid/CardGrid";
 import Form from "../component/form/Form";
 import Card from "../component/card/Card";
 
+import { assets } from "../assets/assets";
+import Testimonial from "../component/testimonial/Testimonial";
+
 function HomePage() {
   const [pkgs, setPkgs] = useState([]);
 
@@ -33,6 +36,12 @@ function HomePage() {
 
   return (
     <>
+      <div className=" bottom-10 md:left-4 z-50 fixed w-24 rounded-full overflow-hidden">
+        <a href="#">
+          <img src={assets.whatsapp} alt="" className="object-cover" />
+        </a>
+      </div>
+
       <div className="relative">
         <Hero />
         <div className="absolute -bottom-[34rem]  md:-bottom-28 mx-auto w-full">
@@ -43,37 +52,6 @@ function HomePage() {
       <section className="mt-[38rem] md:mt-52">
         <CardGrid />
       </section>
-
-      <section className="container | mt-8 md:mt-16 px-2 md:px-0 py-8">
-        <div className="mb-4">
-          <h1 className=" text-3xl md:text-4xl font-bold text-gray-600">
-            Explore our
-            <span className="text-blue-500"> Tour Packages </span>
-          </h1>
-        </div>
-        <div
-          id="tour-package"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {pkgList}
-        </div>
-      </section>
-
-      {/* line  */}
-      <div class="inline-flex items-center justify-center w-full mt-12">
-        <hr class="w-72 h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700" />
-        <div class="absolute px-4 -translate-x-1/2 bg-[#f9f8f8]  left-1/2 dark:bg-gray-900">
-          <svg
-            class="w-4 h-4 text-gray-700 dark:text-gray-300"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 18 14"
-          >
-            <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
-          </svg>
-        </div>
-      </div>
 
       {/* why choose us */}
       <div className="container my-20">
@@ -127,23 +105,42 @@ function HomePage() {
               money.
             </p>
           </div>
-
-          {/* <div className="text-center bg-[#d8e2d8] px-2 md:px-8 py-6 md:py-12 rounded shadow space-y-8">
-            <p className="text-gray-700">
-              <span class="material-symbols-outlined | text-6xl">
-                source_environment
-              </span>
-            </p>
-            <h3 className="font-semibold text-lg text-gray-700">
-              Verified Hotels
-            </h3>
-            <p className="text-gray-600">
-              We offer a meticulously selected and verified list of high-grade
-              hotels. Our partners consistently deliver top-notch service,
-              ensuring an exceptional experience for our guests.
-            </p>
-          </div> */}
         </div>
+      </div>
+
+      <section className="container | mt-8 md:mt-16 px-2 md:px-0 py-8">
+        <div className="mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-600">
+            Explore our
+            <span className="text-blue-500"> Tour Packages </span>
+          </h1>
+        </div>
+        <div
+          id="tour-package"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {pkgList}
+        </div>
+      </section>
+
+      {/* line  */}
+      <div class="inline-flex items-center justify-center w-full mt-12">
+        <hr class="w-72 h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700" />
+        <div class="absolute px-4 -translate-x-1/2 bg-[#f9f8f8]  left-1/2 dark:bg-gray-900">
+          <svg
+            class="w-4 h-4 text-gray-700 dark:text-gray-300"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 18 14"
+          >
+            <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
+          </svg>
+        </div>
+      </div>
+
+      <div className="container">
+        <Testimonial />
       </div>
     </>
   );
