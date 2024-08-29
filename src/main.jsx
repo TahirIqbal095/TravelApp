@@ -1,13 +1,38 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { NextUIProvider } from "@nextui-org/react";
-import App from "./App.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import HomePage from "./pages/HomePage.jsx";
+import SharedLayout from "./pages/SharedLayout.jsx";
+import DetailPage from "./pages/DetailsPage.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
+
 import "./index.css";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <SharedLayout />,
+    errorElement: <ErrorPage />,
+
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/package/details/:id",
+        element: <DetailPage />,
+      },
+    ],
+  },
+]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <NextUIProvider>
-      <App />
+      <RouterProvider router={router} />
     </NextUIProvider>
   </StrictMode>
 );
