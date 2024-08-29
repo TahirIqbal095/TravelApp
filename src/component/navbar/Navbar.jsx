@@ -63,24 +63,24 @@ export default function Nav() {
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              color={
-                index === 2
-                  ? "primary"
-                  : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
-              }
-              className="w-full"
-              to={"/"}
-              size="lg"
-            >
-              {item}
-            </Link>
-          </NavbarMenuItem>
-        ))}
+        <NavbarMenuItem>
+          <Link to={"/"}>Home</Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link to={"/packages"}>Tour Packages</Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link to={"/"}>Trending Packages</Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link to={"/about-us"}>About Us</Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link to={"/"}>Offers</Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link to={"/"}>Contact Us</Link>
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );
