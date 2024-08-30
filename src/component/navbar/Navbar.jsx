@@ -12,6 +12,8 @@ import {
 import { Link, NavLink } from "react-router-dom";
 import { assets } from "../../assets/assets";
 
+import DropDown from "../dropdown/Dropdown";
+
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -50,6 +52,9 @@ export default function Nav() {
         </NavbarItem>
         <NavbarItem>
           <NavLink to={"/about-us"}>About Us</NavLink>
+        </NavbarItem>
+        <NavbarItem>
+          <DropDown />
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">

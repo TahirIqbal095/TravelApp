@@ -5,8 +5,8 @@ import CardGrid from "../component/cardgrid/CardGrid";
 import Form from "../component/form/Form";
 import Card from "../component/card/Card";
 
-import { assets } from "../assets/assets";
 import Testimonial from "../component/testimonial/Testimonial";
+import PopoverContact from "../component/popover/PopoverContact";
 
 function HomePage() {
   const [pkgs, setPkgs] = useState([]);
@@ -36,10 +36,8 @@ function HomePage() {
 
   return (
     <>
-      <div className=" bottom-10 md:left-4 z-50 fixed w-24 rounded-full overflow-hidden">
-        <a href="#">
-          <img src={assets.whatsapp} alt="" className="object-cover" />
-        </a>
+      <div className=" bottom-10 left-2 md:left-4 z-50 fixed">
+        <PopoverContact />
       </div>
 
       <div className="relative">
