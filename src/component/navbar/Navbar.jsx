@@ -26,8 +26,8 @@ export default function Nav() {
         />
         <NavbarBrand>
           <Link to={"/"} className="flex items-center">
-            <img src={assets.logo} alt="" className="w-16" />
-            <p className="font-bold text-inherit">Mount Eco</p>
+            <img src={assets.logo} alt="" className="w-20" />
+            {/* <p className="font-bold text-inherit">Mount Eco</p> */}
           </Link>
         </NavbarBrand>
       </NavbarContent>
@@ -40,6 +40,9 @@ export default function Nav() {
           <NavLink to={"/packages"}>Packages</NavLink>
         </NavbarItem>
         <NavbarItem>
+          <NavLink to={"/packages"}>Trending</NavLink>
+        </NavbarItem>
+        <NavbarItem>
           <NavLink to={"/about-us"}>About Us</NavLink>
         </NavbarItem>
       </NavbarContent>
@@ -48,7 +51,7 @@ export default function Nav() {
           <DropDown />
         </NavbarItem>
         <NavbarItem className="hidden md:block">
-          <Button as={Link} color="primary" href="#" variant="flat">
+          <Button as={Link} color="primary" href="#" variant="solid">
             Sign Up
           </Button>
         </NavbarItem>
