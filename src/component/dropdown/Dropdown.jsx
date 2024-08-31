@@ -33,7 +33,7 @@ export default function DropDown() {
       <DropdownTrigger>
         <Button className="flex items-center capitalize gap-1 bg-[#D5E6FB] text-blue-500 px-4 py-2 rounded-xl ">
           <span>{selectedValue}</span>
-          <span class="material-symbols-outlined">keyboard_arrow_down</span>
+          <span className="material-symbols-outlined">keyboard_arrow_down</span>
         </Button>
       </DropdownTrigger>
       <DropdownMenu

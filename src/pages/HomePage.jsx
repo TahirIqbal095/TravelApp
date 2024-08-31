@@ -4,6 +4,7 @@ import Hero from "../component/hero/Hero";
 import CardGrid from "../component/cardgrid/CardGrid";
 import Form from "../component/form/Form";
 import Card from "../component/card/Card";
+import Trending from "../component/trending/Trending";
 
 import Testimonial from "../component/testimonial/Testimonial";
 import PopoverContact from "../component/popover/PopoverContact";
@@ -48,6 +49,10 @@ function HomePage() {
       </div>
 
       <section className="mt-[38rem] md:mt-52">
+        <Trending />
+      </section>
+
+      <section className="mt-20">
         <CardGrid />
       </section>
 

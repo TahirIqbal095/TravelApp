@@ -1,5 +1,4 @@
 import { assets } from "../../assets/assets";
-import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -12,8 +11,6 @@ import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
 
 function Testimonial() {
-  const [swiperRef, setSwiperRef] = useState(null);
-
   const testmonialData = [
     {
       id: 1,
@@ -47,13 +44,6 @@ function Testimonial() {
   return (
     <>
       <section className="container relative">
-        {/* <div
-          className="absolute inset-0 pointer-events-none z-10"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 0.5) 100%)",
-          }}
-        ></div> */}
         <div>
           <div className="mb-4">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-600">
@@ -65,7 +55,6 @@ function Testimonial() {
             </p>
           </div>
           <Swiper
-            onSwiper={setSwiperRef}
             centeredSlides={true}
             slidesPerView={1}
             spaceBetween={15}

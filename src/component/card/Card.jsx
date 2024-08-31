@@ -53,7 +53,7 @@ function Card(props) {
           </div>
         </h3>
         <p className="md:text-base text-gray-500 text-base">
-          {props.description.split(" ").slice(0, 14).join(" ")}
+          {props.description.split(" ").slice(0, 16).join(" ")}
           <Link to={`/package/details/${props.id}`} className="text-indigo-700">
             ...more
           </Link>
