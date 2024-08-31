@@ -11,6 +11,7 @@ import PackagePage from "./pages/PackagePage.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
 
 import "./index.css";
+import FilterPackage from "./pages/FilterPackage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "about-us",
         element: <AboutUs />,
+      },
+      {
+        path: "packages/categories/:id",
+        element: <FilterPackage />,
       },
     ],
   },

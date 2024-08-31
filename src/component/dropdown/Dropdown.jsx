@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Dropdown,
   DropdownTrigger,
@@ -9,20 +9,32 @@ import {
 import { Link } from "react-router-dom";
 
 export default function DropDown() {
-  const [selectedKeys, setSelectedKeys] = React.useState(new Set(["Text"]));
+  const [selectedKeys, setSelectedKeys] = React.useState(
+    new Set(["Filter Packages"])
+  );
+  const [categories, setCategories] = React.useState([]);
 
   const selectedValue = React.useMemo(
     () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
     [selectedKeys]
   );
 
+  useEffect(() => {
+    fetch("https://adlizone.pythonanywhere.com/api/tours/categories/")
+      .then((response) => response.json())
+      .then((data) => {
+        setCategories(data);
+      })
+      .catch((err) => console.error("error fetching data" + err));
+  }, []);
+
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Link className="flex items-center capitalize gap-1 bg-[#D5E6FB] text-blue-500 px-4 py-2 rounded-xl outline-blue-400">
+        <Button className="flex items-center capitalize gap-1 bg-[#D5E6FB] text-blue-500 px-4 py-2 rounded-xl ">
           <span>{selectedValue}</span>
           <span class="material-symbols-outlined">keyboard_arrow_down</span>
-        </Link>
+        </Button>
       </DropdownTrigger>
       <DropdownMenu
         aria-label="Single selection example"
@@ -32,11 +44,12 @@ export default function DropDown() {
         selectedKeys={selectedKeys}
         onSelectionChange={setSelectedKeys}
       >
-        <DropdownItem key="text">Text</DropdownItem>
-        <DropdownItem key="number">Number</DropdownItem>
-        <DropdownItem key="date">Date</DropdownItem>
-        <DropdownItem key="single_date">Single Date</DropdownItem>
-        <DropdownItem key="iteration">Iteration</DropdownItem>
+        {categories &&
+          categories.map((cat) => (
+            <DropdownItem key={cat.name}>
+              <Link to={`/packages/categories/${cat.id}`}>{cat.name}</Link>
+            </DropdownItem>
+          ))}
       </DropdownMenu>
     </Dropdown>
   );

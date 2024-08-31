@@ -16,7 +16,7 @@ function Form({ useGrid }) {
   const [adults, setAdults] = useState("");
   const [child, setChild] = useState("");
   const [pkg, setPkg] = useState([]);
-  const [value, setValue] = useState("example@mail.com");
+  const [date, setDate] = useState("");
 
   // email validation
   const validateEmail = (value) =>

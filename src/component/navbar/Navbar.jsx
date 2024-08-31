@@ -17,23 +17,12 @@ import DropDown from "../dropdown/Dropdown";
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  const menuItems = [
-    "Home",
-    "Packages",
-    "Offers",
-    "Trending packages",
-    "J&k Tourism",
-    "Offers",
-    "Contact Us",
-    "Log Out",
-  ];
-
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth="xl">
       <NavbarContent justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
+          className="md:hidden"
         />
         <NavbarBrand>
           <Link to={"/"} className="flex items-center">
@@ -43,7 +32,7 @@ export default function Nav() {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+      <NavbarContent className="hidden md:flex gap-6" justify="center">
         <NavbarItem>
           <NavLink to={"/"}>Home</NavLink>
         </NavbarItem>
@@ -53,15 +42,12 @@ export default function Nav() {
         <NavbarItem>
           <NavLink to={"/about-us"}>About Us</NavLink>
         </NavbarItem>
+      </NavbarContent>
+      <NavbarContent justify="end">
         <NavbarItem>
           <DropDown />
         </NavbarItem>
-      </NavbarContent>
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem>
-        <NavbarItem>
+        <NavbarItem className="hidden md:block">
           <Button as={Link} color="primary" href="#" variant="flat">
             Sign Up
           </Button>
@@ -85,6 +71,9 @@ export default function Nav() {
         </NavbarMenuItem>
         <NavbarMenuItem>
           <Link to={"/"}>Contact Us</Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link to={"/"}>Sign Up</Link>
         </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
