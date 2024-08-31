@@ -5,6 +5,7 @@ import {
   PopoverContent,
   Button,
 } from "@nextui-org/react";
+import { AsyncImage } from "loadable-image";
 
 import { assets } from "../../assets/assets";
 
@@ -14,7 +15,7 @@ export default function PopoverContact() {
       <PopoverTrigger>
         <Button
           color="primary"
-          className="rounded-[50%] h-[4.5rem] w-[4.5rem] md:h-20 md:w-20"
+          className="rounded-full md:rounded-[50%] h-[3rem] w-[3rem] md:h-20 md:w-20"
         >
           <span className="material-symbols-outlined">call</span>
         </Button>
@@ -22,7 +23,12 @@ export default function PopoverContact() {
       <PopoverContent>
         <div className="px-1 py-2">
           <a href="">
-            <img src={assets.whatsapp} className="w-20" alt="" />
+            <AsyncImage
+              src={assets.whatsapp}
+              className="w-20"
+              alt="image"
+              loader={<div style={{ background: "#94b8f2" }} />}
+            />
           </a>
         </div>
       </PopoverContent>

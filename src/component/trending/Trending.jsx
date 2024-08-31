@@ -1,14 +1,12 @@
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-
-// import required modules
-import { Pagination } from "swiper/modules";
 import { useEffect, useState } from "react";
 
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
+
+import { AsyncImage } from "loadable-image";
 import { Link } from "react-router-dom";
 
 function Trending() {
@@ -27,7 +25,7 @@ function Trending() {
         <div className="">
           <div className="mb-4">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-600">
-              Trending Now 🔥
+              <span className="text-blue-500">Trending</span> Now 🔥
             </h1>
             <p className="text-gray-600 mt-1 text-sm flex items-center">
               <span>Most Loved Packages on Mount Eco</span>
@@ -65,17 +63,18 @@ function Trending() {
                 <Link to={`/package/details/${pkg.id}`}>
                   <div className="mb-12">
                     <div className="h-96 w-auto overflow-hidden rounded-lg">
-                      <img
+                      <AsyncImage
                         src={pkg.image}
                         alt=""
                         className="object-cover w-full h-full"
+                        loader={<div style={{ background: "#94b8f2" }} />}
                       />
                     </div>
                     <div className="mt-4">
                       <p className="text-base text-gray-600">
                         {pkg.duration} Days Package
                       </p>
-                      <p className="mt-2 text-lg font-medium hover:text-blue-500">
+                      <p className="mt-2 text-xl font-semibold hover:text-blue-500">
                         {pkg.name}
                       </p>
                     </div>

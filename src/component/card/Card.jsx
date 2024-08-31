@@ -34,7 +34,6 @@ function Card(props) {
           src={props.img}
           alt={props.name}
           className="rounded-xl object-cover w-full h-full"
-          // Transition={(props) => <Blur radius={10} {...props} />}
           loader={<div style={{ background: "#94b8f2" }} />}
         />
       </div>

@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy } from "react";
+import { useState, useEffect } from "react";
 
 import Hero from "../component/hero/Hero";
 import CardGrid from "../component/cardgrid/CardGrid";
@@ -8,6 +8,8 @@ import Trending from "../component/trending/Trending";
 
 import Testimonial from "../component/testimonial/Testimonial";
 import PopoverContact from "../component/popover/PopoverContact";
+
+import "./styles/homepage.css";
 
 function HomePage() {
   const [pkgs, setPkgs] = useState([]);
@@ -33,7 +35,29 @@ function HomePage() {
     />
   ));
 
-  // const Grid = lazy(() => import("../component/cardgrid/CardGrid"));
+  const whyChooseUs = [
+    {
+      id: 1,
+      heading: "20+ Year Experience",
+      details:
+        " Boasting over two decades in the tourism and hospitality industry Tour My India has amassed invaluable experience that sets us apart",
+      color: "#dae5ea",
+    },
+    {
+      id: 2,
+      heading: " A Team of Experts",
+      details:
+        " Our experienced team at Tour My India is more than just proficient; they are destination experts for every location within the mesmerizing landscape of India. Their knowledge is an invaluable asset for every traveler.",
+      color: "#EFF4EF",
+    },
+    {
+      id: 3,
+      heading: "Value for Money Tours",
+      details:
+        " With Tour My India, your vacation is not just about sightseeing it's about creating memories that last a lifetime. Our holiday packages are hassle-free and designed with a focus on value for money.",
+      color: "#FBF2F1",
+    },
+  ];
 
   return (
     <>
@@ -63,55 +87,25 @@ function HomePage() {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-8">
-          <div className="text-center bg-[#f6f2e2] px-2 md:px-8 py-6 md:py-12 rounded shadow space-y-8">
-            <p className="text-gray-700 ">
-              <span className="material-symbols-outlined | text-6xl">
-                psychology
-              </span>
-            </p>
-            <h3 className="font-semibold text-lg text-gray-700">
-              20+ Year Experience
-            </h3>
-            <p className="text-gray-600">
-              Boasting over two decades in the tourism and hospitality industry,
-              Tour My India has amassed invaluable experience that sets us
-              apart.
-            </p>
-          </div>
-
-          <div className="text-center bg-[#f3e7e6] px-2 md:px-8 py-6 md:py-12 rounded shadow space-y-8">
-            <p className="text-gray-700">
-              <span class="material-symbols-outlined | text-6xl">groups_2</span>
-            </p>
-            <h3 className="font-semibold text-lg text-gray-700">
-              A Team of Experts
-            </h3>
-            <p className="text-gray-600">
-              Our experienced team at Tour My India is more than just
-              proficient; they are destination experts for every location within
-              the mesmerizing landscape of India. Their knowledge is an
-              invaluable asset for every traveler.
-            </p>
-          </div>
-
-          <div className="text-center bg-[#dce8ee] px-2 md:px-8 py-6 md:py-12 rounded shadow space-y-8">
-            <p className="text-gray-700">
-              <span class="material-symbols-outlined | text-6xl">paid</span>
-            </p>
-            <h3 className="font-semibold text-lg text-gray-700">
-              Value for Money Tours
-            </h3>
-            <p className="text-gray-600">
-              With Tour My India, your vacation is not just about sightseeing;
-              it's about creating memories that last a lifetime. Our holiday
-              packages are hassle-free and designed with a focus on value for
-              money.
-            </p>
-          </div>
+          {whyChooseUs.map((data) => (
+            <div
+              id="why-choose-us-card"
+              key={data.id}
+              className={`text-center px-2 md:px-8 py-6 md:py-12 rounded shadow space-y-8 bg-[${data.color}]`}
+            >
+              <p className="text-gray-700 ">
+                <span class="material-symbols-outlined">thumb_up</span>
+              </p>
+              <h3 className="font-semibold text-lg text-gray-700">
+                {data.heading}
+              </h3>
+              <p className="text-gray-600">{data.details}</p>
+            </div>
+          ))}
         </div>
       </div>
 
-      <section className="container | mt-8 md:mt-16 px-2 md:px-0 py-8">
+      <section className="container | mt-8 md:mt-16 py-8">
         <div className="mb-4">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-600">
             Explore our
@@ -127,7 +121,7 @@ function HomePage() {
       </section>
 
       {/* line  */}
-      <div class="inline-flex items-center justify-center w-full mt-12">
+      <div class="inline-flex items-center justify-center w-full mt-8">
         <hr class="w-72 h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700" />
         <div class="absolute px-4 -translate-x-1/2 bg-[#f9f8f8]  left-1/2 dark:bg-gray-900">
           <svg
@@ -142,7 +136,7 @@ function HomePage() {
         </div>
       </div>
 
-      <div className="container">
+      <div className="container my-8">
         <Testimonial />
       </div>
     </>
