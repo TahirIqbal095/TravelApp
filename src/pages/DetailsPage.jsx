@@ -194,7 +194,7 @@ function DetailPage() {
             {cards.map((card) =>
               card.id != id ? (
                 <SwiperSlide key={card.id}>
-                  <div className="mb-16">
+                  <div className="mb-12">
                     <Card
                       id={card.id}
                       name={card.name}

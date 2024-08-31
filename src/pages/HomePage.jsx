@@ -40,21 +40,21 @@ function HomePage() {
       id: 1,
       heading: "20+ Year Experience",
       details:
-        " Boasting over two decades in the tourism and hospitality industry Tour My India has amassed invaluable experience that sets us apart",
+        " Boasting over two decades in the tourism and hospitality industry Mount Eco has amassed invaluable experience that sets us apart",
       color: "#dae5ea",
     },
     {
       id: 2,
       heading: " A Team of Experts",
       details:
-        " Our experienced team at Tour My India is more than just proficient; they are destination experts for every location within the mesmerizing landscape of India. Their knowledge is an invaluable asset for every traveler.",
+        " Our experienced team at Mount Eco is more than just proficient; they are destination experts for every location within the mesmerizing landscape of India. Their knowledge is an invaluable asset for every traveler.",
       color: "#EFF4EF",
     },
     {
       id: 3,
       heading: "Value for Money Tours",
       details:
-        " With Tour My India, your vacation is not just about sightseeing it's about creating memories that last a lifetime. Our holiday packages are hassle-free and designed with a focus on value for money.",
+        " With Mount Eco, your vacation is not just about sightseeing it's about creating memories that last a lifetime. Our holiday packages are hassle-free and designed with a focus on value for money.",
       color: "#FBF2F1",
     },
   ];
@@ -95,7 +95,7 @@ function HomePage() {
               style={{ backgroundColor: data.color }}
             >
               <p className="text-gray-700 ">
-                <span class="material-symbols-outlined">thumb_up</span>
+                <span className="material-symbols-outlined">thumb_up</span>
               </p>
               <h3 className="font-semibold text-lg text-gray-700">
                 {data.heading}
@@ -122,11 +122,11 @@ function HomePage() {
       </section>
 
       {/* line  */}
-      <div class="inline-flex items-center justify-center w-full mt-8">
-        <hr class="w-72 h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700" />
-        <div class="absolute px-4 -translate-x-1/2 bg-[#f9f8f8]  left-1/2 dark:bg-gray-900">
+      <div className="inline-flex items-center justify-center w-full mt-8">
+        <hr className="w-72 h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700" />
+        <div className="absolute px-4 -translate-x-1/2 bg-[#f9f8f8]  left-1/2 dark:bg-gray-900">
           <svg
-            class="w-4 h-4 text-gray-700 dark:text-gray-300"
+            className="w-4 h-4 text-gray-700 dark:text-gray-300"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"

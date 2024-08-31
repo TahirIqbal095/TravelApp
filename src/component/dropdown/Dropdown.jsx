@@ -46,8 +46,17 @@ export default function DropDown() {
       >
         {categories &&
           categories.map((cat) => (
-            <DropdownItem key={cat.name}>
-              <Link to={`/packages/categories/${cat.id}`}>{cat.name}</Link>
+            <DropdownItem
+              key={cat.name}
+              textValue={cat.name}
+              onClick={(e) => e.preventDefault()}
+            >
+              <Link
+                to={`/packages/categories/${cat.id}/`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {cat.name}
+              </Link>
             </DropdownItem>
           ))}
       </DropdownMenu>
