@@ -6,8 +6,14 @@ import Form from "../component/form/Form";
 import SmallCard from "../component/smallcard/SmallCard";
 import Card from "../component/card/Card";
 
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
+
 import { AsyncImage } from "loadable-image";
-import { Blur, Grow } from "transitions-kit";
+import { Blur } from "transitions-kit";
 
 function DetailPage() {
   const { id } = useParams();
@@ -144,11 +150,11 @@ function DetailPage() {
         </aside>
       </div>
 
-      <div class="inline-flex items-center justify-center w-full mt-12">
-        <hr class="w-72 h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700" />
-        <div class="absolute px-4 -translate-x-1/2 bg-[#f9f8f8]  left-1/2 dark:bg-gray-900">
+      <div className="inline-flex items-center justify-center w-full mt-12">
+        <hr className="w-72 h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700" />
+        <div className="absolute px-4 -translate-x-1/2 bg-[#f9f8f8]  left-1/2 dark:bg-gray-900">
           <svg
-            class="w-4 h-4 text-gray-700 dark:text-gray-300"
+            className="w-4 h-4 text-gray-700 dark:text-gray-300"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
@@ -164,8 +170,46 @@ function DetailPage() {
           <span className="text-blue-500">Explore</span> more{" "}
           <span className="text-4xl">&#10549;</span>
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {cardList}
+        <div>
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={10}
+            centeredSlides={false}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Pagination]}
+            className="mySwiper mt-4"
+            breakpoints={{
+              486: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+              },
+            }}
+          >
+            {cards.map((card) =>
+              card.id != id ? (
+                <SwiperSlide key={card.id}>
+                  <div className="mb-16">
+                    <Card
+                      id={card.id}
+                      name={card.name}
+                      description={card.description}
+                      duration={card.duration}
+                      price={card.price}
+                      img={card.image}
+                    />
+                  </div>
+                </SwiperSlide>
+              ) : (
+                " "
+              )
+            )}
+          </Swiper>
         </div>
       </section>
     </>

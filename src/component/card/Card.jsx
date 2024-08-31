@@ -28,7 +28,7 @@ function Card(props) {
     ));
 
   return (
-    <div className="rounded-xl shadow-lg px-4 py-6 mx-auto border bg-white">
+    <div className="rounded-xl hover:shadow-lg transition px-4 py-6 mx-auto border bg-white">
       <div className="w-full h-60 overflow-hidden rounded-xl">
         <AsyncImage
           src={props.img}
