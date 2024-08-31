@@ -14,14 +14,14 @@ export default function CardGrid() {
     <section className="container">
       <div className="mb-4">
         <h1 className=" text-2xl md:text-3xl font-bold text-gray-600">
-          Top <span className="text-blue-500">Trending</span> Destinations
+          Top <span className="text-blue-500">Locations</span> in Kashmir
         </h1>
-        <a href="#" className=" text-gray-600 text-sm mt-1 flex items-center">
-          <span className="font-extrabold">View All Tours</span>
-          <span className="material-symbols-outlined | text-base text-blue-600 font-extrabold">
-            arrow_forward_ios
+        <p className="text-gray-600 mt-1 text-sm flex items-center">
+          <span>Most Loved Packages on Mount Eco</span>
+          <span className="material-symbols-outlined text-blue-600">
+            keyboard_arrow_down
           </span>
-        </a>
+        </p>
       </div>
       <div className="gap-4 grid grid-cols-12 grid-rows-2">
         <Card className="col-span-12 sm:col-span-4 h-[300px]">

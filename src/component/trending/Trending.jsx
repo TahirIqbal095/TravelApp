@@ -27,12 +27,15 @@ function Trending() {
             <h1 className="text-3xl md:text-4xl font-bold text-gray-600">
               <span className="text-blue-500">Trending</span> Now 🔥
             </h1>
-            <p className="text-gray-600 mt-1 text-sm flex items-center">
-              <span>Most Loved Packages on Mount Eco</span>
-              <span className="material-symbols-outlined text-blue-600">
-                keyboard_arrow_down
+            <a
+              href="#"
+              className=" text-gray-600 text-sm mt-1 flex items-center"
+            >
+              <span className="font-extrabold">View All Tours</span>
+              <span className="material-symbols-outlined | text-base text-blue-600 font-extrabold">
+                arrow_forward_ios
               </span>
-            </p>
+            </a>
           </div>
           <Swiper
             slidesPerView={1}

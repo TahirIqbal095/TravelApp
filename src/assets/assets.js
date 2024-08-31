@@ -1,4 +1,4 @@
-import gridimg1 from "./gridimg1.jpg";
+import gridimg1 from "./gridimg1.jpeg";
 import gridimg2 from "./gridimg2.jpg";
 import gridimg3 from "./gridimg3.jpg";
 import gridimg4 from "./gridimg4.jpg";
