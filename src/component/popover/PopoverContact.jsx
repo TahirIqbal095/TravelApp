@@ -25,7 +25,7 @@ export default function PopoverContact() {
           <a href="">
             <AsyncImage
               src={assets.whatsapp}
-              className="w-20"
+              style={{ width: 50, height: 50 }}
               alt="image"
               loader={<div style={{ background: "#94b8f2" }} />}
             />

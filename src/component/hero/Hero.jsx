@@ -10,13 +10,15 @@ function Hero() {
 
       <div className="relative mx-auto max-w-screen-xl px-4 py-32">
         <div className="max-w-5xl mx-auto flex flex-col justify-center items-center">
-          <h1 className="hero-heading | text-center font-extrabold text-white">
+          <h1 className="hero-heading | text-center font-semibold md:font-bold text-white">
             Let us plan you a perfect
-            <strong className="block font-extrabold text-blue-600">
+            <spna className="block font-bold md:font-extrabold text-blue-600">
               Kashmir Holiday
-            </strong>
+            </spna>
           </h1>
-
+          <p className="text-gray-200 text-center text-lg md:text-xl">
+            Journey to the Heart of Kashmir, Adventure Awaits with Mount Eco
+          </p>
           <div className="mt-8 flex flex-col text-center gap-4">
             <a
               href="#tour-package"

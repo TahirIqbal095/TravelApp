@@ -91,7 +91,8 @@ function HomePage() {
             <div
               id="why-choose-us-card"
               key={data.id}
-              className={`text-center px-2 md:px-8 py-6 md:py-12 rounded shadow space-y-8 bg-[${data.color}]`}
+              className={`text-center px-2 md:px-8 py-6 md:py-12 rounded shadow space-y-8`}
+              style={{ backgroundColor: data.color }}
             >
               <p className="text-gray-700 ">
                 <span class="material-symbols-outlined">thumb_up</span>
