@@ -27,15 +27,15 @@ function Trending() {
             <h1 className="text-3xl md:text-4xl font-bold text-gray-600">
               <span className="text-blue-500">Trending</span> Now 🔥
             </h1>
-            <a
-              href="#"
+            <Link
+              to={"packages"}
               className=" text-gray-600 text-sm mt-1 flex items-center"
             >
               <span className="font-extrabold">View All Tours</span>
               <span className="material-symbols-outlined | text-base text-blue-600 font-extrabold">
                 arrow_forward_ios
               </span>
-            </a>
+            </Link>
           </div>
           <Swiper
             slidesPerView={1}
