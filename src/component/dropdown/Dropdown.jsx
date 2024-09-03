@@ -44,12 +44,16 @@ export default function DropDown() {
         selectedKeys={selectedKeys}
         onSelectionChange={setSelectedKeys}
       >
-        {categories &&
-          categories.map((cat) => (
-            <DropdownItem key={cat.name} textValue={cat.name}>
-              <Link to={`/packages/categories/${cat.id}`}>{cat.name}</Link>
-            </DropdownItem>
-          ))}
+        {categories.map((cat) => (
+          <DropdownItem key={cat.name} textValue={cat.name}>
+            <Link
+              to={`/packages/categories/${cat.id}`}
+              style={{ display: "block", width: "100%", height: "100%" }}
+            >
+              {cat.name}
+            </Link>
+          </DropdownItem>
+        ))}
       </DropdownMenu>
     </Dropdown>
   );

@@ -12,6 +12,7 @@ import PopoverContact from "../component/popover/PopoverContact";
 import "./styles/homepage.css";
 import { assets } from "../assets/assets";
 import CardGrid2 from "../component/cardgrid/CardGrid2";
+import DropDown from "../component/dropdown/Dropdown";
 
 function HomePage() {
   const [pkgs, setPkgs] = useState([]);
