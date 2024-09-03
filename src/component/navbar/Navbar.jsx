@@ -23,9 +23,9 @@ export default function Nav() {
 
   return (
     <>
-      <section className="bg-blue-600">
-        <div className="py-2 flex flex-col gap-2 md:flex-row items-center justify-between max-w-[74rem] mx-auto">
-          <div className="flex gap-6 items-center">
+      <section className="bg-blue-600 px-2">
+        <div className="py-2 flex  gap-2 flex-row items-center justify-between max-w-[74rem] mx-auto">
+          <div className="flex gap-4 md:gap-6 items-center">
             <a
               href="#"
               class="block text-white transition-all duration-500 hover:text-blue-200 "
@@ -96,7 +96,7 @@ export default function Nav() {
           <div className="flex gap-6">
             <a
               href="tel:7006906718"
-              className="flex items-center gap-1 text-base text-white border-r-1 px-6"
+              className="hidden md:flex items-center gap-1 text-base text-white border-r-1 px-6"
             >
               <span className="material-symbols-outlined text-lg">call</span>
               <span>7007906718</span>
