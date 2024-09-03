@@ -8,15 +8,15 @@ function Hero() {
     >
       <div className="absolute inset-0 bg-gray-900/55"></div>
 
-      <div className="relative mx-auto max-w-screen-xl px-4 py-32">
+      <div className="relative mx-auto max-w-screen-xl px-4 pt-16 pb-36 md:py-32">
         <div className="max-w-5xl mx-auto flex flex-col justify-center items-center">
           <h1 className="hero-heading | text-center font-semibold md:font-bold text-white">
-            Let us plan you a perfect
-            <spna className="block font-bold md:font-extrabold text-blue-600">
+            Let us plan you a Perfect
+            <span className="block font-bold md:font-extrabold text-blue-600">
               Kashmir Holiday
-            </spna>
+            </span>
           </h1>
-          <p className="text-gray-200 text-center text-lg md:text-xl">
+          <p className="text-gray-200 text-center text-base px-4 md:text-xl">
             Journey to the Heart of Kashmir, Adventure Awaits with Mount Eco
           </p>
           <div className="mt-8 flex flex-col text-center gap-4">

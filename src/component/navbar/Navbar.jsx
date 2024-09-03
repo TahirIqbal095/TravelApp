@@ -24,9 +24,9 @@ export default function Nav() {
 
   const dropdownItems = [
     { id: 1, name: "Home", link: "/" },
-    { id: 2, name: "Tour Packages", link: "packages" },
+    { id: 2, name: "Tour Packages", link: "/packages" },
     { id: 3, name: "Trending Packages", link: "/" },
-    { id: 4, name: "About Us", link: "about-us" },
+    { id: 4, name: "About Us", link: "/about-us" },
     { id: 5, name: "Offers", link: "/" },
     { id: 6, name: "Contact Us", link: "/" },
   ];
@@ -131,16 +131,44 @@ export default function Nav() {
 
         <NavbarContent className="hidden md:flex gap-4" justify="center">
           <NavbarItem>
-            <NavLink to={"/"}>Home</NavLink>
+            <NavLink
+              to={"/"}
+              className={({ isActive }) => {
+                return isActive ? "text-blue-600" : "text-gray-800";
+              }}
+            >
+              Home
+            </NavLink>
           </NavbarItem>
           <NavbarItem>
-            <NavLink to={"/packages"}>Packages</NavLink>
+            <NavLink
+              to={"/packages"}
+              className={({ isActive }) => {
+                return isActive ? "text-blue-600" : "text-gray-800";
+              }}
+            >
+              Packages
+            </NavLink>
           </NavbarItem>
           <NavbarItem>
-            <NavLink to={"/packages"}>Trending</NavLink>
+            <NavLink
+              to={"/trending"}
+              className={({ isActive }) => {
+                return isActive ? "text-blue-600" : "text-gray-800";
+              }}
+            >
+              Trending
+            </NavLink>
           </NavbarItem>
           <NavbarItem>
-            <NavLink to={"/about-us"}>About Us</NavLink>
+            <NavLink
+              to={"/about-us"}
+              className={({ isActive }) => {
+                return isActive ? "text-blue-600" : "text-gray-800";
+              }}
+            >
+              About Us
+            </NavLink>
           </NavbarItem>
         </NavbarContent>
 
@@ -148,7 +176,7 @@ export default function Nav() {
           <NavbarItem>
             <DropDown />
           </NavbarItem>
-          <Dropdown placement="bottom-end" backdrop="blur">
+          <Dropdown placement="bottom-end">
             <DropdownTrigger>
               <Avatar
                 isBordered
