@@ -7,6 +7,7 @@ import logo from "./logo.png";
 import hero from "./hero.jpg";
 import whatsapp from "./whatsapp.png";
 import testimonialuser from "./testimonialuser.svg";
+import user from "./user.png";
 
 export const assets = {
   gridimg1,
@@ -18,4 +19,5 @@ export const assets = {
   logo,
   whatsapp,
   testimonialuser,
+  user,
 };

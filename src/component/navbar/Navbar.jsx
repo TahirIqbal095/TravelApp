@@ -4,10 +4,11 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  NavbarMenuToggle,
-  NavbarMenu,
-  NavbarMenuItem,
-  Button,
+  DropdownItem,
+  DropdownTrigger,
+  Dropdown,
+  DropdownMenu,
+  Avatar,
 } from "@nextui-org/react";
 import { Link, NavLink } from "react-router-dom";
 import { assets } from "../../assets/assets";
@@ -20,6 +21,15 @@ export default function Nav() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const dropdownItems = [
+    { id: 1, name: "Home", link: "/" },
+    { id: 2, name: "Tour Packages", link: "packages" },
+    { id: 3, name: "Trending Packages", link: "/" },
+    { id: 4, name: "About Us", link: "about-us" },
+    { id: 5, name: "Offers", link: "/" },
+    { id: 6, name: "Contact Us", link: "/" },
+  ];
 
   return (
     <>
@@ -111,20 +121,15 @@ export default function Nav() {
           </div>
         </div>
       </section>
-      <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth="xl">
-        <NavbarContent justify="start">
-          <NavbarMenuToggle
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            className="md:hidden"
-          />
-          <NavbarBrand>
-            <Link to={"/"} className="flex items-center">
-              <img src={assets.logo} alt="" className="w-20" />
-            </Link>
-          </NavbarBrand>
-        </NavbarContent>
 
-        <NavbarContent className="hidden md:flex gap-6" justify="center">
+      <Navbar maxWidth="xl">
+        <NavbarBrand>
+          <Link to={"/"} className="flex items-center">
+            <img src={assets.logo} alt="" className="w-24" />
+          </Link>
+        </NavbarBrand>
+
+        <NavbarContent className="hidden md:flex gap-4" justify="center">
           <NavbarItem>
             <NavLink to={"/"}>Home</NavLink>
           </NavbarItem>
@@ -138,60 +143,45 @@ export default function Nav() {
             <NavLink to={"/about-us"}>About Us</NavLink>
           </NavbarItem>
         </NavbarContent>
-        <NavbarContent justify="end">
+
+        <NavbarContent as="div" justify="end">
           <NavbarItem>
             <DropDown />
           </NavbarItem>
-          <NavbarItem className="hidden md:block">
-            <Button as={Link} color="primary" href="#" variant="solid">
-              Sign Up
-            </Button>
-          </NavbarItem>
-        </NavbarContent>
-        {isMenuOpen ? (
-          <NavbarMenu>
-            <NavbarMenuItem>
-              <Link
-                to={"/"}
-                onClick={() => {
-                  setIsMenuOpen(false);
-                }}
+          <Dropdown placement="bottom-end" backdrop="blur">
+            <DropdownTrigger>
+              <Avatar
+                isBordered
+                as="button"
+                className="transition-transform"
+                color="default"
+                name="Jason Hughes"
+                size="sm"
+                src={assets.user}
+              />
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Profile Actions" variant="flat">
+              <DropdownItem
+                key="profile"
+                className="h-14 gap-2"
+                textValue="user-profile"
               >
-                Home
-              </Link>
-            </NavbarMenuItem>
-            <NavbarMenuItem>
-              <Link to={"/packages"} onClick={() => setIsMenuOpen(false)}>
-                Tour Packages
-              </Link>
-            </NavbarMenuItem>
-            <NavbarMenuItem>
-              <Link to={"/"} onClick={() => setIsMenuOpen(false)}>
-                Trending Packages
-              </Link>
-            </NavbarMenuItem>
-            <NavbarMenuItem>
-              <Link to={"/about-us"} onClick={() => setIsMenuOpen(false)}>
-                About Us
-              </Link>
-            </NavbarMenuItem>
-            <NavbarMenuItem>
-              <Link to={"/"} onClick={() => setIsMenuOpen(false)}>
-                Offers
-              </Link>
-            </NavbarMenuItem>
-            <NavbarMenuItem>
-              <Link to={"/"} onClick={() => setIsMenuOpen(false)}>
-                Contact Us
-              </Link>
-            </NavbarMenuItem>
-            <NavbarMenuItem>
-              <Link to={"/"} onClick={() => setIsMenuOpen(false)}>
-                Sign Up
-              </Link>
-            </NavbarMenuItem>
-          </NavbarMenu>
-        ) : null}
+                <p className="font-semibold">Signed in as</p>
+                <p className="font-semibold">zoey@example.com</p>
+              </DropdownItem>
+              {dropdownItems.map((item) => (
+                <DropdownItem key={item.id} textValue="items">
+                  <Link
+                    to={item.link}
+                    style={{ display: "block", width: "100%", height: "100%" }}
+                  >
+                    {item.name}
+                  </Link>
+                </DropdownItem>
+              ))}
+            </DropdownMenu>
+          </Dropdown>
+        </NavbarContent>
       </Navbar>
     </>
   );
