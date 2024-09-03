@@ -22,14 +22,14 @@ function Hero() {
           <div className="mt-8 flex flex-col text-center gap-4">
             <a
               href="#tour-package"
-              className="block w-full rounded bg-blue-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
+              className="block w-full rounded-xl bg-blue-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
             >
               Book Now
             </a>
 
             <a
               href="#tour-package"
-              className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-blue-600 shadow hover:text-blue-700 focus:outline-none focus:ring active:text-blue-500 sm:w-auto"
+              className="block w-full rounded-xl bg-white px-12 py-3 text-sm font-medium text-blue-600 shadow hover:text-blue-700 focus:outline-none focus:ring active:text-blue-500 sm:w-auto"
             >
               View Tour Packages
             </a>

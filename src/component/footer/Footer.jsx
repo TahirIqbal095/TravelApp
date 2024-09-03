@@ -53,7 +53,7 @@ function Footer() {
               </svg>
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/mount_eco_tour_and_travel?igsh=bmFwcTU4ZG91bXg2&utm_source=qr"
               class="block  text-gray-900 transition-all duration-500 hover:text-blue-600 "
             >
               <svg
@@ -69,7 +69,7 @@ function Footer() {
               </svg>
             </a>
             <a
-              href="#"
+              href="https://www.facebook.com/share/RdVkCPnX3CzsbeNf/?mibextid=LQQJ4d"
               class="block  text-gray-900 transition-all duration-500 hover:text-blue-600 "
             >
               <svg

@@ -62,7 +62,7 @@ function Card(props) {
       <div className="">
         <Link
           to={`/package/details/${props.id}`}
-          className=" rounded bg-blue-600 px-10 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-500"
+          className=" rounded-xl bg-blue-600 px-10 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-500"
         >
           Details
         </Link>
