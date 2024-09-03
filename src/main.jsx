@@ -9,6 +9,7 @@ import DetailPage from "./pages/DetailsPage.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import PackagePage from "./pages/PackagePage.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
+import TrendingPage from "./pages/TrendingPage.jsx";
 
 import "./index.css";
 import FilterPackage from "./pages/FilterPackage.jsx";
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "packages",
         element: <PackagePage />,
+      },
+      {
+        path: "trending",
+        element: <TrendingPage />,
       },
       {
         path: "about-us",

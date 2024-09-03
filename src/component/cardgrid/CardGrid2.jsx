@@ -18,10 +18,7 @@ function CardGrid2() {
         <div className="py-4 mx-auto max-w-screen-xl">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 h-full">
             <div className="relative col-span-2 sm:col-span-1 md:col-span-2 bg-gray-50 h-auto md:h-full flex flex-col">
-              <a
-                href=""
-                className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40 flex-grow"
-              >
+              <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40 flex-grow">
                 <img
                   src={assets.gridimg1}
                   alt=""
@@ -31,10 +28,10 @@ function CardGrid2() {
                 <h3 className="z-10 text-2xl font-medium text-white absolute top-0 left-0 p-4 xs:text-xl md:text-3xl">
                   Dal Lake
                 </h3>
-              </a>
+              </div>
             </div>
             <div className="col-span-2 sm:col-span-1 md:col-span-2 bg-stone-50">
-              <a
+              <div
                 href=""
                 className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40 mb-4"
               >
@@ -47,9 +44,9 @@ function CardGrid2() {
                 <h3 className="z-10 text-2xl font-medium text-white absolute top-0 left-0 p-4 xs:text-xl md:text-3xl">
                   Shikara
                 </h3>
-              </a>
+              </div>
               <div className="grid gap-4 grid-cols-2 sm:grid-cols-2 lg:grid-cols-2">
-                <a
+                <div
                   href=""
                   className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40"
                 >
@@ -62,8 +59,8 @@ function CardGrid2() {
                   <h3 className="z-10 text-2xl font-medium text-white absolute top-0 left-0 p-4 xs:text-xl md:text-3xl">
                     Daksum
                   </h3>
-                </a>
-                <a
+                </div>
+                <div
                   href=""
                   className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40"
                 >
@@ -76,11 +73,11 @@ function CardGrid2() {
                   <h3 className="z-10 text-2xl font-medium text-white absolute top-0 left-0 p-4 xs:text-xl md:text-3xl">
                     Ladakh
                   </h3>
-                </a>
+                </div>
               </div>
             </div>
             <div className="col-span-2 sm:col-span-1 md:col-span-1 bg-sky-50 h-auto md:h-full flex flex-col">
-              <a
+              <div
                 href=""
                 className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40 flex-grow"
               >
@@ -93,7 +90,7 @@ function CardGrid2() {
                 <h3 className="z-10 text-2xl font-medium text-white absolute top-0 left-0 p-4 xs:text-xl md:text-3xl">
                   Doodhpathri
                 </h3>
-              </a>
+              </div>
             </div>
           </div>
         </div>

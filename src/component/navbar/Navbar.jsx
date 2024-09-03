@@ -134,7 +134,7 @@ export default function Nav() {
             <NavLink
               to={"/"}
               className={({ isActive }) => {
-                return isActive ? "text-blue-600" : "text-gray-800";
+                return isActive ? "text-blue-600 font-medium" : "text-gray-800";
               }}
             >
               Home
@@ -144,7 +144,7 @@ export default function Nav() {
             <NavLink
               to={"/packages"}
               className={({ isActive }) => {
-                return isActive ? "text-blue-600" : "text-gray-800";
+                return isActive ? "text-blue-600 font-medium" : "text-gray-800";
               }}
             >
               Packages
@@ -154,7 +154,7 @@ export default function Nav() {
             <NavLink
               to={"/trending"}
               className={({ isActive }) => {
-                return isActive ? "text-blue-600" : "text-gray-800";
+                return isActive ? "text-blue-600 font-medium" : "text-gray-800";
               }}
             >
               Trending
@@ -164,7 +164,7 @@ export default function Nav() {
             <NavLink
               to={"/about-us"}
               className={({ isActive }) => {
-                return isActive ? "text-blue-600" : "text-gray-800";
+                return isActive ? "text-blue-600 font-medium" : "text-gray-800";
               }}
             >
               About Us
@@ -189,14 +189,14 @@ export default function Nav() {
               />
             </DropdownTrigger>
             <DropdownMenu aria-label="Profile Actions" variant="flat">
-              <DropdownItem
+              {/* <DropdownItem
                 key="profile"
                 className="h-14 gap-2"
                 textValue="user-profile"
               >
                 <p className="font-semibold">Signed in as</p>
                 <p className="font-semibold">zoey@example.com</p>
-              </DropdownItem>
+              </DropdownItem> */}
               {dropdownItems.map((item) => (
                 <DropdownItem key={item.id} textValue="items">
                   <Link
