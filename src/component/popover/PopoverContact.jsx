@@ -12,10 +12,10 @@ import { assets } from "../../assets/assets";
 export default function PopoverContact() {
   return (
     <Popover placement="top" offset={20} showArrow>
-      <PopoverTrigger className="">
-        <Button className="rounded-[50%] h-20  md:h-20 md:w-20 bg-blue-600 text-white">
-          <span className="material-symbols-outlined w-6 inline">call</span>
-        </Button>
+      <PopoverTrigger className="flex items-center justify-center text-center">
+        <div className="rounded-[50%] h-14 w-14  md:h-16 md:w-16 bg-blue-600 text-white">
+          <span className="material-symbols-outlined w-10">call</span>
+        </div>
       </PopoverTrigger>
       <PopoverContent>
         <div className="px-1 py-2">

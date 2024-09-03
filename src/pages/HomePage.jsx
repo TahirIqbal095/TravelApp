@@ -1,18 +1,15 @@
 import { useState, useEffect } from "react";
 
 import Hero from "../component/hero/Hero";
-import CardGrid from "../component/cardgrid/CardGrid";
 import Form from "../component/form/Form";
 import Card from "../component/card/Card";
 import Trending from "../component/trending/Trending";
 
 import Testimonial from "../component/testimonial/Testimonial";
 import PopoverContact from "../component/popover/PopoverContact";
+import CardGrid2 from "../component/cardgrid/CardGrid2";
 
 import "./styles/homepage.css";
-import { assets } from "../assets/assets";
-import CardGrid2 from "../component/cardgrid/CardGrid2";
-import DropDown from "../component/dropdown/Dropdown";
 
 function HomePage() {
   const [pkgs, setPkgs] = useState([]);
