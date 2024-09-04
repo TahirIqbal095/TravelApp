@@ -183,6 +183,7 @@ function Form({ useGrid }) {
           label="Choose a Date"
           onChange={(e) => {
             const dateStr = e.year + "-" + e.month + "-" + e.day;
+            setDate(dateStr);
           }}
         />
 
