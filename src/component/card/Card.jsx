@@ -14,7 +14,7 @@ function Card(props) {
       .then((res) => res.json())
       .then((data) => setCategories(data))
       .catch((err) => console.log(`Error caused by : ${err}`));
-  });
+  }, []);
 
   const categoriesList =
     categories &&

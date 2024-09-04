@@ -182,8 +182,7 @@ function Form({ useGrid }) {
         <DatePicker
           label="Choose a Date"
           onChange={(e) => {
-            const dateStr = e.year + ", " + e.month + ", " + e.day;
-            setDate(dateStr);
+            const dateStr = e.year + "-" + e.month + "-" + e.day;
           }}
         />
 

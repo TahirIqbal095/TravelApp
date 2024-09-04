@@ -17,7 +17,7 @@ function Trending() {
       .then((res) => res.json())
       .then((data) => setTrendingPkg(data))
       .catch((err) => console.log("error fetching data" + err));
-  });
+  }, []);
 
   return (
     <>
