@@ -6,13 +6,15 @@ import {
   DatePicker,
 } from "@nextui-org/react";
 
+import toast, { Toaster } from "react-hot-toast";
+
 import { useEffect, useState, useMemo } from "react";
 
 function Form({ useGrid }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [tourPackage, setTourPackage] = useState();
+  const [tourPackage, setTourPackage] = useState("");
   const [adults, setAdults] = useState("");
   const [child, setChild] = useState("");
   const [pkg, setPkg] = useState([]);
@@ -34,6 +36,10 @@ function Form({ useGrid }) {
     if (phone === "") return false;
     return validatePhone(phone) ? false : true;
   });
+
+  // toast messages
+  const toastMessageSucess = () => toast.success("Form submitted successfully");
+  const toastMessageFailed = () => toast.error("Form submission failed");
 
   useEffect(() => {
     fetch("https://adlizone.pythonanywhere.com/api/tours/")
@@ -57,11 +63,12 @@ function Form({ useGrid }) {
         adults: adults,
         children: child,
         tour_package: tourPackage,
+        arrival_date: date,
       }),
     })
       .then((response) => {
         if (response.ok) {
-          alert("Booking successful");
+          toastMessageSucess();
           setName("");
           setEmail("");
           setPhone("");
@@ -69,7 +76,7 @@ function Form({ useGrid }) {
           setAdults("");
           setChild("");
         } else {
-          alert("Booking failed");
+          toastMessageFailed();
         }
       })
       .catch((error) => console.error(`Error caused by: ${error}`));
@@ -126,9 +133,7 @@ function Form({ useGrid }) {
           className="mb-2"
           required
           value={tourPackage}
-          onChange={(e) => {
-            setTourPackage(e.target.value);
-          }}
+          onChange={(e) => setTourPackage(e.target.value)}
         >
           {pkg &&
             pkg.map((item) => (
@@ -174,11 +179,20 @@ function Form({ useGrid }) {
           <SelectItem key="10">10</SelectItem>
         </Select>
 
-        <DatePicker label="Choose a Date" />
+        <DatePicker
+          label="Choose a Date"
+          onChange={(e) => {
+            const dateStr = e.year + ", " + e.month + ", " + e.day;
+            setDate(dateStr);
+          }}
+        />
 
-        <Button type="submit" color="primary" className="mt-2 md:mt-0">
-          Send Enquiry
-        </Button>
+        <>
+          <Button type="submit" color="primary" className="mt-2 md:mt-0">
+            Send Enquiry
+          </Button>
+          <Toaster />
+        </>
       </div>
     </form>
   );

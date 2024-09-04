@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -17,6 +17,11 @@ import DropDown from "../dropdown/Dropdown";
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [dropdownKey, setDropdownKey] = useState(0);
+
+  const handleNavLinkClick = () => {
+    setDropdownKey((prevKey) => prevKey + 1);
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -25,7 +30,7 @@ export default function Nav() {
   const dropdownItems = [
     { id: 1, name: "Home", link: "/" },
     { id: 2, name: "Tour Packages", link: "/packages" },
-    { id: 3, name: "Trending Packages", link: "/" },
+    { id: 3, name: "Trending Packages", link: "/trending" },
     { id: 4, name: "About Us", link: "/about-us" },
     { id: 5, name: "Offers", link: "/" },
     { id: 6, name: "Contact Us", link: "/" },
@@ -38,10 +43,10 @@ export default function Nav() {
           <div className="flex gap-4 md:gap-6 items-center">
             <a
               href="#"
-              class="block text-white transition-all duration-500 hover:text-blue-200 "
+              className="block text-white transition-all duration-500 hover:text-blue-200 "
             >
               <svg
-                class="w-[1.2rem] h-[1.2rem]"
+                className="w-[1.2rem] h-[1.2rem]"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="none"
@@ -54,10 +59,10 @@ export default function Nav() {
             </a>
             <a
               href="https://www.instagram.com/mount_eco_tour_and_travel?igsh=bmFwcTU4ZG91bXg2&utm_source=qr"
-              class="block  text-white transition-all duration-500 hover:text-blue-200 "
+              className="block  text-white transition-all duration-500 hover:text-blue-200 "
             >
               <svg
-                class="w-[1.2rem] h-[1.2rem]"
+                className="w-[1.2rem] h-[1.2rem]"
                 viewBox="0 0 29 29"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -70,10 +75,10 @@ export default function Nav() {
             </a>
             <a
               href="https://www.facebook.com/share/RdVkCPnX3CzsbeNf/?mibextid=LQQJ4d"
-              class="block  text-white transition-all duration-500 hover:text-blue-200 "
+              className="block  text-white transition-all duration-500 hover:text-blue-200 "
             >
               <svg
-                class="w-[0.8rem] h-[1.2rem]"
+                className="w-[0.8rem] h-[1.2rem]"
                 viewBox="0 0 15 26"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -86,10 +91,10 @@ export default function Nav() {
             </a>
             <a
               href="#"
-              class="block  text-white transition-all duration-500 hover:text-blue-200 "
+              className="block  text-white transition-all duration-500 hover:text-blue-200 "
             >
               <svg
-                class="w-[1.3rem] h-[1.2rem]"
+                className="w-[1.3rem] h-[1.2rem]"
                 viewBox="0 0 30 22"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +127,7 @@ export default function Nav() {
         </div>
       </section>
 
-      <Navbar maxWidth="xl">
+      <Navbar maxWidth="xl" className="">
         <NavbarBrand>
           <Link to={"/"} className="flex items-center">
             <img src={assets.logo} alt="" className="w-24" />
@@ -136,6 +141,7 @@ export default function Nav() {
               className={({ isActive }) => {
                 return isActive ? "text-blue-600 font-medium" : "text-gray-800";
               }}
+              onClick={handleNavLinkClick}
             >
               Home
             </NavLink>
@@ -146,6 +152,7 @@ export default function Nav() {
               className={({ isActive }) => {
                 return isActive ? "text-blue-600 font-medium" : "text-gray-800";
               }}
+              onClick={handleNavLinkClick}
             >
               Packages
             </NavLink>
@@ -156,6 +163,7 @@ export default function Nav() {
               className={({ isActive }) => {
                 return isActive ? "text-blue-600 font-medium" : "text-gray-800";
               }}
+              onClick={handleNavLinkClick}
             >
               Trending
             </NavLink>
@@ -166,6 +174,7 @@ export default function Nav() {
               className={({ isActive }) => {
                 return isActive ? "text-blue-600 font-medium" : "text-gray-800";
               }}
+              onClick={handleNavLinkClick}
             >
               About Us
             </NavLink>
@@ -174,7 +183,7 @@ export default function Nav() {
 
         <NavbarContent as="div" justify="end">
           <NavbarItem>
-            <DropDown />
+            <DropDown key={dropdownKey} />
           </NavbarItem>
           <Dropdown placement="bottom-end">
             <DropdownTrigger>

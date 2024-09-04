@@ -8,7 +8,7 @@ import {
 } from "@nextui-org/react";
 import { Link } from "react-router-dom";
 
-export default function DropDown() {
+export default function DropDown(props) {
   const [selectedKeys, setSelectedKeys] = React.useState(
     new Set(["Filter Packages"])
   );

@@ -13,7 +13,7 @@ export default function PopoverContact() {
   return (
     <Popover placement="top" offset={20} showArrow>
       <PopoverTrigger className="flex items-center justify-center text-center">
-        <div className="rounded-[50%] h-14 w-14  md:h-16 md:w-16 bg-blue-600 text-white">
+        <div className="rounded-[50%] h-14 w-14  md:h-16 md:w-16 bg-blue-600 text-white cursor-pointer">
           <span className="material-symbols-outlined w-10">call</span>
         </div>
       </PopoverTrigger>
