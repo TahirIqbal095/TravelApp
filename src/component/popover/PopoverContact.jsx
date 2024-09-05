@@ -19,7 +19,7 @@ export default function PopoverContact() {
       </PopoverTrigger>
       <PopoverContent>
         <div className="px-1 py-2">
-          <a href="https://wa.me/7006906718">
+          <a href="https://wa.me/8991000921">
             <AsyncImage
               src={assets.whatsapp}
               style={{ width: 50, height: 50 }}

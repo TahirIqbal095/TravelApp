@@ -110,18 +110,18 @@ export default function Nav() {
           </div>
           <div className="flex gap-6">
             <a
-              href="tel:7006906718"
+              href="tel:8991000921"
               className="hidden md:flex items-center gap-1 text-base text-white border-r-1 px-6"
             >
               <span className="material-symbols-outlined text-lg">call</span>
-              <span>7007906718</span>
+              <span>8991000921</span>
             </a>
             <a
-              href="mailto:shahtahir786@gmail.com"
+              href="mailto:mountecotourandtravel@gmail.com"
               className="flex items-center gap-1 text-sm text-white"
             >
               <span className="material-symbols-outlined text-lg">mail</span>
-              <span>mounteco@gmail.com</span>
+              <span>mountecotourandtravel@gmail.com</span>
             </a>
           </div>
         </div>
@@ -129,7 +129,11 @@ export default function Nav() {
 
       <Navbar maxWidth="xl" className="">
         <NavbarBrand>
-          <Link to={"/"} className="flex items-center">
+          <Link
+            to={"/"}
+            className="flex items-center"
+            onClick={handleNavLinkClick}
+          >
             <img src={assets.logo} alt="" className="w-24" />
           </Link>
         </NavbarBrand>
