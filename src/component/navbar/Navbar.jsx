@@ -39,8 +39,8 @@ export default function Nav() {
   return (
     <>
       <section className="bg-blue-600 px-2">
-        <div className="py-2 flex  gap-2 flex-row items-center justify-between max-w-[74rem] mx-auto">
-          <div className="flex gap-4 md:gap-6 items-center">
+        <div className="py-2 flex  gap-1 flex-row items-center justify-between max-w-[74rem] mx-auto">
+          <div className="flex gap-3 md:gap-6 items-center">
             <a
               href="#"
               className="block text-white transition-all duration-500 hover:text-blue-200 "
@@ -120,8 +120,10 @@ export default function Nav() {
               href="mailto:mountecotourandtravel@gmail.com"
               className="flex items-center gap-1 text-sm text-white"
             >
-              <span className="material-symbols-outlined text-lg">mail</span>
-              <span>mountecotourandtravel@gmail.com</span>
+              <span className="material-symbols-outlined text-base">mail</span>
+              <span className="text-[0.7rem]">
+                mountecotourandtravel@gmail.com
+              </span>
             </a>
           </div>
         </div>
