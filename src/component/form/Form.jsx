@@ -6,7 +6,7 @@ import {
   DatePicker,
 } from "@nextui-org/react";
 
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 import { useEffect, useState, useMemo } from "react";
 
@@ -39,7 +39,10 @@ function Form({ useGrid }) {
 
   // toast messages
   const toastMessageSucess = () => toast.success("Form submitted successfully");
-  const toastMessageFailed = () => toast.error("Form submission failed");
+  // const toastMessageFailed = () => toast.error("Form submission failed");
+  const toastMessageFailed = (message) => {
+    toast.error(message);
+  };
 
   useEffect(() => {
     fetch("https://adlizone.pythonanywhere.com/api/tours/")
@@ -48,38 +51,58 @@ function Form({ useGrid }) {
       .catch((error) => console.error(`Error caused by: ${error}`));
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    fetch("https://adlizone.pythonanywhere.com/api/tours/bookings/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        customer_name: name,
-        customer_email: email,
-        customer_phone: phone,
-        adults: adults,
-        children: child,
-        tour_package: tourPackage,
-        arrival_date: date,
-      }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          toastMessageSucess();
-          setName("");
-          setEmail("");
-          setPhone("");
-          setTourPackage("");
-          setAdults("");
-          setChild("");
-        } else {
-          toastMessageFailed();
+    try {
+      const response = await fetch(
+        "https://adlizone.pythonanywhere.com/api/tours/bookings/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            customer_name: name,
+            customer_email: email,
+            customer_phone: phone,
+            adults: adults,
+            children: child,
+            tour_package: tourPackage,
+            arrival_date: date,
+          }),
         }
-      })
-      .catch((error) => console.error(`Error caused by: ${error}`));
+      );
+
+      if (response.ok) {
+        toastMessageSucess();
+        setName("");
+        setEmail("");
+        setPhone("");
+        setTourPackage("");
+        setAdults("");
+        setChild("");
+      } else {
+        const errorData = await response.json();
+
+        if (errorData.customer_name) {
+          toastMessageFailed(errorData.customer_name[0]);
+        } else if (errorData.customer_email) {
+          toastMessageFailed(errorData.customer_email[0]);
+        } else if (errorData.adults) {
+          toastMessageFailed(errorData.adults[0]);
+        } else if (errorData.children) {
+          toastMessageFailed(errorData.children[0]);
+          toastMessageFailed();
+        } else if (errorData.tour_package) {
+          toastMessageFailed(errorData.tour_package[0]);
+        } else if (errorData.arrival_date) {
+          toastMessageFailed(errorData.arrival_date[0]);
+        }
+      }
+    } catch (error) {
+      toastMessageFailed("Server error, please try again later");
+    }
   };
 
   const gridClasses = useGrid
@@ -131,6 +154,7 @@ function Form({ useGrid }) {
         <Select
           label="Select Tour package"
           className="mb-2"
+          errorMessage="Please select a package"
           required
           value={tourPackage}
           onChange={(e) => setTourPackage(e.target.value)}
@@ -146,6 +170,8 @@ function Form({ useGrid }) {
         <Select
           label="No. of Adults"
           value={adults}
+          required
+          errorMessage="Please select no. of adults"
           onChange={(e) => setAdults(e.target.value)}
         >
           <SelectItem key="1">1</SelectItem>
@@ -187,12 +213,9 @@ function Form({ useGrid }) {
           }}
         />
 
-        <>
-          <Button type="submit" color="primary" className="mt-2 md:mt-0">
-            Send Enquiry
-          </Button>
-          <Toaster />
-        </>
+        <Button type="submit" color="primary" className="mt-2 md:mt-0">
+          Send Enquiry
+        </Button>
       </div>
     </form>
   );
