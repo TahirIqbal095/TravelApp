@@ -217,6 +217,7 @@ export default function Nav() {
                   <Link
                     to={item.link}
                     style={{ display: "block", width: "100%", height: "100%" }}
+                    onClick={handleNavLinkClick}
                   >
                     {item.name}
                   </Link>
