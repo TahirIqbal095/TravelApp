@@ -13,6 +13,8 @@ import TrendingPage from "./pages/TrendingPage.jsx";
 
 import "./index.css";
 import FilterPackage from "./pages/FilterPackage.jsx";
+import Login from "./pages/LoginPage.jsx";
+import Signup from "./pages/SignupPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +46,14 @@ const router = createBrowserRouter([
       {
         path: "packages/categories/:id",
         element: <FilterPackage />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "signup",
+        element: <Signup />,
       },
     ],
   },

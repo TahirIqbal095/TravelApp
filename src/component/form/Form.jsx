@@ -39,7 +39,6 @@ function Form({ useGrid }) {
 
   // toast messages
   const toastMessageSucess = () => toast.success("Form submitted successfully");
-  // const toastMessageFailed = () => toast.error("Form submission failed");
   const toastMessageFailed = (message) => {
     toast.error(message);
   };
@@ -93,7 +92,6 @@ function Form({ useGrid }) {
           toastMessageFailed(errorData.adults[0]);
         } else if (errorData.children) {
           toastMessageFailed(errorData.children[0]);
-          toastMessageFailed();
         } else if (errorData.tour_package) {
           toastMessageFailed(errorData.tour_package[0]);
         } else if (errorData.arrival_date) {
