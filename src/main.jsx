@@ -11,58 +11,68 @@ import PackagePage from "./pages/PackagePage.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
 import TrendingPage from "./pages/TrendingPage.jsx";
 
-import "./index.css";
 import FilterPackage from "./pages/FilterPackage.jsx";
 import Login from "./pages/LoginPage.jsx";
 import Signup from "./pages/SignupPage.jsx";
+import { AuthProvider } from "./context/AuthProvider.jsx";
+
+import "./index.css";
+import PrivateRoutes from "./api/PrivateRoutes.jsx";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <SharedLayout />,
-    errorElement: <ErrorPage />,
+    {
+        path: "/",
+        element: <SharedLayout />,
+        errorElement: <ErrorPage />,
 
-    children: [
-      {
-        index: true,
-        element: <HomePage />,
-      },
-      {
-        path: "package/details/:id",
-        element: <DetailPage />,
-      },
-      {
-        path: "packages",
-        element: <PackagePage />,
-      },
-      {
-        path: "trending",
-        element: <TrendingPage />,
-      },
-      {
-        path: "about-us",
-        element: <AboutUs />,
-      },
-      {
-        path: "packages/categories/:id",
-        element: <FilterPackage />,
-      },
-      {
-        path: "login",
-        element: <Login />,
-      },
-      {
-        path: "signup",
-        element: <Signup />,
-      },
-    ],
-  },
+        children: [
+            {
+                index: true,
+                element: <HomePage />,
+            },
+            {
+                path: "packages",
+                element: <PackagePage />,
+            },
+            {
+                path: "trending",
+                element: <TrendingPage />,
+            },
+            {
+                path: "about-us",
+                element: <AboutUs />,
+            },
+            {
+                element: <PrivateRoutes />,
+                children: [
+                    {
+                        path: "package/details/:id",
+                        element: <DetailPage />,
+                    },
+                ],
+            },
+            {
+                path: "packages/categories/:id",
+                element: <FilterPackage />,
+            },
+            {
+                path: "login",
+                element: <Login />,
+            },
+            {
+                path: "signup",
+                element: <Signup />,
+            },
+        ],
+    },
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <NextUIProvider>
-      <RouterProvider router={router} />
-    </NextUIProvider>
-  </StrictMode>
+    <StrictMode>
+        <NextUIProvider>
+            <AuthProvider>
+                <RouterProvider router={router} />
+            </AuthProvider>
+        </NextUIProvider>
+    </StrictMode>
 );

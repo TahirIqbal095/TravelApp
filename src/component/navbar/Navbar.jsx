@@ -223,6 +223,32 @@ export default function Nav() {
                   </Link>
                 </DropdownItem>
               ))}
+              <DropdownItem textValue="login">
+                <Link
+                  to={"/login"}
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    height: "100%",
+                    color: "",
+                  }}
+                >
+                  Login
+                </Link>
+              </DropdownItem>
+              <DropdownItem color="primary" textValue="signup">
+                <Link
+                  to={"/Signup"}
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    height: "100%",
+                    color: "",
+                  }}
+                >
+                  Sign Up
+                </Link>
+              </DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </NavbarContent>
