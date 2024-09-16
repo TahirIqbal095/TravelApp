@@ -9,13 +9,12 @@ function Signup() {
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
+    const [error, setError] = useState("");
     const [username, setUsername] = useState("");
     const [firstPassword, setFirstPassword] = useState("");
     const [secondPassword, setSecondPassword] = useState("");
     const [hidePasswordFirst, setHidePasswordFirst] = useState(true);
     const [hidePasswordSecond, setHidePasswordSecond] = useState(true);
-
-    const [error, setError] = useState("");
 
     const toggelPasswordSecond = () => {
         setHidePasswordSecond((prev) => !prev);

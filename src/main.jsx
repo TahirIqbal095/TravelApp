@@ -17,7 +17,7 @@ import Signup from "./pages/SignupPage.jsx";
 import { AuthProvider } from "./context/AuthProvider.jsx";
 
 import "./index.css";
-import PrivateRoutes from "./api/PrivateRoutes.jsx";
+import PrivateRoutes from "./component/PrivateRoutes.jsx";
 
 const router = createBrowserRouter([
     {
