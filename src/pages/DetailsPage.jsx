@@ -62,22 +62,6 @@ function DetailPage() {
         </div>
     ));
 
-    const cardList = cards.map((card) =>
-        card.id != id ? (
-            <Card
-                id={card.id}
-                key={card.id}
-                name={card.name}
-                description={card.description}
-                duration={card.duration}
-                price={card.price}
-                img={card.image}
-            />
-        ) : (
-            ""
-        )
-    );
-
     return (
         <>
             <div className="container lg:grid lg:grid-cols-3 items-start">

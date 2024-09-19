@@ -1,23 +1,25 @@
 import useAuth from "./useAuth";
 
 function useRefreshToken() {
-    const { auth, setAuth } = useAuth();
+    const { setAuth } = useAuth();
+    const refreshToken = localStorage.getItem("refreshToken");
 
     const refresh = async () => {
-        const resposne = await fetch(
+        const response = await fetch(
             "https://adlizone.pythonanywhere.com/api/users/token/refresh/",
             {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
+
                 body: JSON.stringify({
-                    refresh: auth.refresh,
+                    refresh: refreshToken,
                 }),
             }
         );
 
-        const data = await resposne.json();
+        const data = await response.json();
 
         setAuth((prev) => {
             console.log(JSON.stringify(prev));

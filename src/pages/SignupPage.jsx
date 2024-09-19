@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
@@ -44,20 +44,15 @@ function Signup() {
                 }
             );
 
-            if (!response.ok) {
-                const data = await response.json();
-                setError(data?.detail);
+            const data = await response.json();
+
+            if (response.status === 400) {
+                console.log(data.password[0]);
                 return;
             }
-            const data = await response.json();
-            const access = data?.access;
-            const refresh = data?.refresh;
 
-            setAuth({ username, access, refresh });
-            console.log("Auth state updated");
-
+            setAuth({ username });
             navigate(from, { replace: true });
-            console.log("Navigation triggered");
         } catch (err) {
             setError(`Error message : ${err}`);
             console.log(error);

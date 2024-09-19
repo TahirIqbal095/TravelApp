@@ -15,6 +15,7 @@
     "@nextui-org/react": "^2.4.6",
     "@react-aria/i18n": "^3.12.2",
     "autoprefixer": "^10.4.20",
+    "axios": "^1.7.7",
     "framer-motion": "^11.3.28",
     "loadable-image": "^3.2.6",
     "postcss": "^8.4.41",

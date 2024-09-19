@@ -10,6 +10,7 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import PackagePage from "./pages/PackagePage.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
 import TrendingPage from "./pages/TrendingPage.jsx";
+import UserPage from "./pages/UserPage.jsx";
 
 import FilterPackage from "./pages/FilterPackage.jsx";
 import Login from "./pages/LoginPage.jsx";
@@ -17,7 +18,6 @@ import Signup from "./pages/SignupPage.jsx";
 import { AuthProvider } from "./context/AuthProvider.jsx";
 
 import "./index.css";
-import PrivateRoutes from "./component/PrivateRoutes.jsx";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +31,10 @@ const router = createBrowserRouter([
                 element: <HomePage />,
             },
             {
+                path: "me",
+                element: <UserPage />,
+            },
+            {
                 path: "packages",
                 element: <PackagePage />,
             },
@@ -42,15 +46,12 @@ const router = createBrowserRouter([
                 path: "about-us",
                 element: <AboutUs />,
             },
+
             {
-                element: <PrivateRoutes />,
-                children: [
-                    {
-                        path: "package/details/:id",
-                        element: <DetailPage />,
-                    },
-                ],
+                path: "package/details/:id",
+                element: <DetailPage />,
             },
+
             {
                 path: "packages/categories/:id",
                 element: <FilterPackage />,
