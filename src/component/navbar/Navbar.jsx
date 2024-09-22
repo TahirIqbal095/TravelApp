@@ -12,12 +12,16 @@ import {
 } from "@nextui-org/react";
 import { Link, NavLink } from "react-router-dom";
 import { assets } from "../../assets/assets";
+import useAuth from "../../hooks/useAuth";
+import useLogout from "../../hooks/useLogout";
 
 import DropDown from "../dropdown/Dropdown";
 
 export default function Nav() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const [dropdownKey, setDropdownKey] = useState(0);
+    const { auth } = useAuth();
+    const logout = useLogout();
 
     const handleNavLinkClick = () => {
         setDropdownKey((prevKey) => prevKey + 1);
@@ -199,12 +203,22 @@ export default function Nav() {
                 </NavbarContent>
 
                 <NavbarContent as="div" justify="end">
-                    <Link
-                        to={"/signup"}
-                        className="hidden md:block text-xs font-semibold bg-blue-500 text-white py-2 px-4 rounded-lg shadow"
-                    >
-                        Sign Up
-                    </Link>
+                    {auth.username ? (
+                        <Link
+                            to={"/signup"}
+                            className="hidden md:block text-xs font-semibold bg-blue-500 text-white py-2 px-4 rounded-lg shadow"
+                        >
+                            Sign Up
+                        </Link>
+                    ) : (
+                        <button
+                            onClick={logout}
+                            className="hidden md:block text-xs font-semibold bg-blue-500 text-white py-2 px-4 rounded-lg shadow"
+                        >
+                            Logout
+                        </button>
+                    )}
+
                     <NavbarItem>
                         <DropDown key={dropdownKey} />
                     </NavbarItem>

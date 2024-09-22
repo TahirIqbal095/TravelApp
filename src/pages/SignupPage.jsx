@@ -15,6 +15,7 @@ function Signup() {
     const [secondPassword, setSecondPassword] = useState("");
     const [hidePasswordFirst, setHidePasswordFirst] = useState(true);
     const [hidePasswordSecond, setHidePasswordSecond] = useState(true);
+    const [isLoading, setIsLoading] = useState();
 
     const toggelPasswordSecond = () => {
         setHidePasswordSecond((prev) => !prev);
@@ -26,6 +27,7 @@ function Signup() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
 
         try {
             const response = await fetch(
@@ -44,19 +46,26 @@ function Signup() {
                 }
             );
 
-            const data = await response.json();
-
             if (response.status === 400) {
-                console.log(data.password[0]);
+                setError("Password fields didn't match.");
+                return;
+            } else if (response.status === 400) {
+                alert("username already exist");
                 return;
             }
 
-            setAuth({ username });
-            navigate(from, { replace: true });
+            if (response.status === 201) {
+                const data = await response.json();
+                alert("account has been created");
+            }
+
+            navigate("/login");
         } catch (err) {
             setError(`Error message : ${err}`);
             console.log(error);
         }
+
+        setIsLoading(false);
     };
     return (
         <div className="bg-gray-50">

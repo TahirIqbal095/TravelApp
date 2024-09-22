@@ -1,24 +1,30 @@
 import { useEffect, useState } from "react";
-import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 function UserPage() {
     const [user, setUser] = useState();
     const axiosPrivate = useAxiosPrivate();
     const location = useLocation();
     const navigate = useNavigate();
+    const access = localStorage.getItem("accessToken");
 
     useEffect(() => {
         let isMounted = true;
-        const controller = new AbortController();
 
         const getUser = async () => {
             try {
-                const resposne = await axiosPrivate.get("/api/users/me/", {
-                    signal: controller.signal,
-                });
+                const response = await axiosPrivate.get(
+                    "https://adlizone.pythonanywhere.com/api/users/profile/",
 
-                isMounted && setUser(resposne.data);
+                    {
+                        headers: {
+                            Authorization: `Bearer ${access}`,
+                        },
+                    }
+                );
+
+                if (isMounted) setUser(response?.data);
             } catch (error) {
                 console.error(`Error fetching user: ${error}`);
                 navigate("/login", {
@@ -32,12 +38,11 @@ function UserPage() {
 
         return () => {
             isMounted = false;
-            controller.abort();
         };
-    });
+    }, []);
     return (
-        <div>
-            <h1>User Page</h1>
+        <div className="my-44 text-center">
+            <h1 className="text-5xl">{user?.user}</h1>
         </div>
     );
 }

@@ -1,10 +1,15 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMesssage, setErrorMessage] = useState("");
+    const [isLoading, setIsLoading] = useState();
     const [hidePassword, setHidePassword] = useState(true);
+    const { setAuth } = useAuth();
+    const navigate = useNavigate();
 
     const togglePassword = () => {
         setHidePassword((prev) => !prev);
@@ -12,10 +17,10 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setIsLoading(true);
         try {
             const response = await fetch(
-                "https://adlizone.pythonanywhere.com/api/users/registration/",
+                "https://adlizone.pythonanywhere.com/api/users/login/",
                 {
                     method: "POST",
                     headers: {
@@ -29,11 +34,28 @@ function Login() {
                 }
             );
 
-            const data = await response.json();
-            console.log(data);
+            if (response.status === 401) {
+                const data = await response.json();
+                setErrorMessage(data.detail);
+            } else if (response.status === 200) {
+                const data = await response.json();
+
+                const user = data?.user?.username;
+                const refreshToken = data?.refresh;
+                const accessToken = data?.access;
+
+                localStorage.setItem("accessToken", accessToken);
+                localStorage.setItem("refreshToken", refreshToken);
+
+                setAuth({ user, accessToken, refreshToken });
+                navigate("/me");
+            } else {
+                setErrorMessage("Something went wrong. Please try again later");
+            }
         } catch (error) {
             console.log(`error in login page : ${error}`);
         }
+        setIsLoading(false);
     };
 
     return (
