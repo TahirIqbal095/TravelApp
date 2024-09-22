@@ -11,6 +11,7 @@ import PackagePage from "./pages/PackagePage.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
 import TrendingPage from "./pages/TrendingPage.jsx";
 import UserPage from "./pages/UserPage.jsx";
+import PersistLogin from "./component/auth/PersistLogin.jsx";
 
 import FilterPackage from "./pages/FilterPackage.jsx";
 import Login from "./pages/LoginPage.jsx";
@@ -21,48 +22,54 @@ import "./index.css";
 
 const router = createBrowserRouter([
     {
-        path: "/",
-        element: <SharedLayout />,
-        errorElement: <ErrorPage />,
-
+        element: <PersistLogin />,
         children: [
             {
-                index: true,
-                element: <HomePage />,
-            },
-            {
-                path: "me",
-                element: <UserPage />,
-            },
-            {
-                path: "packages",
-                element: <PackagePage />,
-            },
-            {
-                path: "trending",
-                element: <TrendingPage />,
-            },
-            {
-                path: "about-us",
-                element: <AboutUs />,
-            },
+                path: "/",
+                element: <SharedLayout />,
+                errorElement: <ErrorPage />,
 
-            {
-                path: "package/details/:id",
-                element: <DetailPage />,
-            },
+                children: [
+                    {
+                        index: true,
+                        element: <HomePage />,
+                    },
+                    {
+                        path: "me",
+                        element: <UserPage />,
+                    },
 
-            {
-                path: "packages/categories/:id",
-                element: <FilterPackage />,
-            },
-            {
-                path: "login",
-                element: <Login />,
-            },
-            {
-                path: "signup",
-                element: <Signup />,
+                    {
+                        path: "packages",
+                        element: <PackagePage />,
+                    },
+                    {
+                        path: "trending",
+                        element: <TrendingPage />,
+                    },
+                    {
+                        path: "about-us",
+                        element: <AboutUs />,
+                    },
+
+                    {
+                        path: "package/details/:id",
+                        element: <DetailPage />,
+                    },
+
+                    {
+                        path: "packages/categories/:id",
+                        element: <FilterPackage />,
+                    },
+                    {
+                        path: "login",
+                        element: <Login />,
+                    },
+                    {
+                        path: "signup",
+                        element: <Signup />,
+                    },
+                ],
             },
         ],
     },

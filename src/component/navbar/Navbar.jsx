@@ -203,12 +203,7 @@ export default function Nav() {
 
                 <NavbarContent as="div" justify="end">
                     {auth?.accessToken ? (
-                        <button
-                            onClick={logout}
-                            className="hidden md:block text-xs font-semibold bg-blue-500 text-white py-2 px-4 rounded-lg shadow"
-                        >
-                            Logout
-                        </button>
+                        ""
                     ) : (
                         <Link
                             to={"/signup"}
@@ -255,6 +250,7 @@ export default function Nav() {
                                             width: "100%",
                                             height: "100%",
                                         }}
+                                        textValue="profile"
                                     >
                                         My Profile
                                     </Link>
@@ -285,13 +281,14 @@ export default function Nav() {
                                     color="danger"
                                     className="text-danger"
                                     onClick={logout}
+                                    textValue="logout"
                                 >
                                     Logout
                                 </DropdownItem>
                             ) : (
                                 <DropdownItem
                                     color="primary"
-                                    textValue="signup"
+                                    textValue="login"
                                     className="block md:hidden"
                                 >
                                     <Link

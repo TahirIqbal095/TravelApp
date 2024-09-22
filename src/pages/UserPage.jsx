@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 function UserPage() {
     const [user, setUser] = useState();
-    const [isAuth, setIsAuth] = useState(false);
     const axiosPrivate = useAxiosPrivate();
     const location = useLocation();
     const navigate = useNavigate();
@@ -23,13 +22,11 @@ function UserPage() {
                     signal: controller.signal,
                 });
 
-                setIsAuth(true);
                 setUser(response?.data);
             } catch (error) {
                 console.log(error);
 
                 if (error.response?.status === 401) {
-                    setIsAuth(false);
                     navigate("/login", {
                         state: { from: location },
                         replace: true,
@@ -48,14 +45,7 @@ function UserPage() {
     }, []);
     return (
         <div className="my-44 text-center">
-            {isAuth ? (
-                <h1 className="text-5xl">{user?.user}</h1>
-            ) : (
-                <>
-                    <h2>Please login first</h2>
-                    <Link to={"/login"}>Login</Link>
-                </>
-            )}
+            <h1 className="text-5xl">{user?.user}</h1>
         </div>
     );
 }
