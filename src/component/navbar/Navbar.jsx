@@ -242,7 +242,7 @@ export default function Nav() {
                 <p className="font-semibold">zoey@example.com</p>
               </DropdownItem> */}
                             {auth?.accessToken ? (
-                                <DropdownItem>
+                                <DropdownItem textValue="profile">
                                     <Link
                                         to={"/me"}
                                         style={{
@@ -250,7 +250,6 @@ export default function Nav() {
                                             width: "100%",
                                             height: "100%",
                                         }}
-                                        textValue="profile"
                                     >
                                         My Profile
                                     </Link>
@@ -289,7 +288,7 @@ export default function Nav() {
                                 <DropdownItem
                                     color="primary"
                                     textValue="login"
-                                    className="block md:hidden"
+                                    className="block md:hidden "
                                 >
                                     <Link
                                         to={"/login"}
@@ -297,10 +296,14 @@ export default function Nav() {
                                             display: "block",
                                             width: "100%",
                                             height: "100%",
-                                            color: "",
                                         }}
                                     >
-                                        Login
+                                        <div className="flex items-center gap-1">
+                                            <span>Login</span>
+                                            <span className="material-symbols-outlined text-sm">
+                                                login
+                                            </span>
+                                        </div>
                                     </Link>
                                 </DropdownItem>
                             )}
