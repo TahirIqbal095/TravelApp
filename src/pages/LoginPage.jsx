@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
+import { Spinner } from "@nextui-org/react";
 
 function Login() {
     const [username, setUsername] = useState("");
@@ -10,6 +12,12 @@ function Login() {
     const [hidePassword, setHidePassword] = useState(true);
     const { setAuth } = useAuth();
     const navigate = useNavigate();
+
+    // toast messages
+    const toastMessageSucess = () => toast.success("You are Logged in");
+    const toastMessageFailed = (message) => {
+        toast.error(message);
+    };
 
     const togglePassword = () => {
         setHidePassword((prev) => !prev);
@@ -34,12 +42,11 @@ function Login() {
                 }
             );
 
-            if (response.status === 401) {
-                const data = await response.json();
-                setErrorMessage(data.detail);
-            } else if (response.status === 200) {
-                const data = await response.json();
+            const data = await response.json();
 
+            if (response.status === 401) {
+                toastMessageFailed(data?.detail);
+            } else if (response.status === 200) {
                 const user = data?.user?.username;
                 const refreshToken = data?.refresh;
                 const accessToken = data?.access;
@@ -48,14 +55,18 @@ function Login() {
                 localStorage.setItem("refreshToken", refreshToken);
 
                 setAuth({ user, accessToken, refreshToken });
+                toastMessageSucess();
                 navigate("/me");
             } else {
-                setErrorMessage("Something went wrong. Please try again later");
+                toastMessageFailed(
+                    "Something went wrong. Please try again later"
+                );
             }
         } catch (error) {
-            console.log(`error in login page : ${error}`);
+            toastMessageFailed("Server is not responding, Please try again");
+        } finally {
+            setIsLoading(false);
         }
-        setIsLoading(false);
     };
 
     return (
@@ -133,9 +144,17 @@ function Login() {
                             <div className="!mt-8">
                                 <button
                                     type="submit"
-                                    className="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
+                                    className="flex justify-center items-center gap-1 w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
                                 >
-                                    Sign in
+                                    <span className="font-semibold">Login</span>
+                                    <span>
+                                        {" "}
+                                        {isLoading ? (
+                                            <Spinner color="default" />
+                                        ) : (
+                                            ""
+                                        )}
+                                    </span>
                                 </button>
                             </div>
                             <p className="text-gray-800 text-sm !mt-8 text-center">

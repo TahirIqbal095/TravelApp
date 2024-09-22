@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { Spinner } from "@nextui-org/react";
+import toast from "react-hot-toast";
 
 function Signup() {
     const { setAuth } = useAuth();
 
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
 
     const [error, setError] = useState("");
     const [username, setUsername] = useState("");
@@ -16,6 +17,15 @@ function Signup() {
     const [hidePasswordFirst, setHidePasswordFirst] = useState(true);
     const [hidePasswordSecond, setHidePasswordSecond] = useState(true);
     const [isLoading, setIsLoading] = useState();
+
+    const from = location.state?.from?.pathname || "/";
+
+    // toast messages
+    const toastMessageSucess = () =>
+        toast.success("Account Created Successfully, Please Login Now");
+    const toastMessageFailed = (message) => {
+        toast.error(message);
+    };
 
     const toggelPasswordSecond = () => {
         setHidePasswordSecond((prev) => !prev);
@@ -46,26 +56,25 @@ function Signup() {
                 }
             );
 
-            if (response.status === 400) {
-                setError("Password fields didn't match.");
-                return;
-            } else if (response.status === 400) {
-                alert("username already exist");
-                return;
-            }
+            const data = await response.json();
 
-            if (response.status === 201) {
-                const data = await response.json();
-                alert("account has been created");
+            if (response.status == 400) {
+                const errormsg =
+                    data.non_field_errors?.[0] || "registration failed";
+                toastMessageFailed(errormsg);
+                return;
+            } else if (response.status === 201) {
+                toastMessageSucess();
+                navigate("/login");
+            } else {
+                toastMessageFailed("Something went wrong. Please try again.");
             }
-
-            navigate("/login");
         } catch (err) {
             setError(`Error message : ${err}`);
-            console.log(error);
+            toastMessageFailed("Server is not responding, Please try again");
+        } finally {
+            setIsLoading(false);
         }
-
-        setIsLoading(false);
     };
     return (
         <div className="bg-gray-50">
@@ -170,9 +179,19 @@ function Signup() {
                             <div className="!mt-8">
                                 <button
                                     type="submit"
-                                    className="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
+                                    className="flex justify-center items-center gap-1 w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
                                 >
-                                    Sign Up
+                                    <span className="font-semibold">
+                                        Sign Up
+                                    </span>
+                                    <span>
+                                        {" "}
+                                        {isLoading ? (
+                                            <Spinner color="default" />
+                                        ) : (
+                                            ""
+                                        )}
+                                    </span>
                                 </button>
                             </div>
                             <p className="text-gray-800 text-sm !mt-8 text-center">

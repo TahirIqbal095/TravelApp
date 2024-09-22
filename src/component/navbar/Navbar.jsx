@@ -28,7 +28,6 @@ export default function Nav() {
     };
 
     const dropdownItems = [
-        { id: 0, name: "My Profile", link: "/me" },
         { id: 1, name: "Home", link: "/" },
         { id: 2, name: "Tour Packages", link: "/packages" },
         { id: 3, name: "Trending Packages", link: "/trending" },
@@ -203,20 +202,20 @@ export default function Nav() {
                 </NavbarContent>
 
                 <NavbarContent as="div" justify="end">
-                    {auth.username ? (
-                        <Link
-                            to={"/signup"}
-                            className="hidden md:block text-xs font-semibold bg-blue-500 text-white py-2 px-4 rounded-lg shadow"
-                        >
-                            Sign Up
-                        </Link>
-                    ) : (
+                    {auth?.accessToken ? (
                         <button
                             onClick={logout}
                             className="hidden md:block text-xs font-semibold bg-blue-500 text-white py-2 px-4 rounded-lg shadow"
                         >
                             Logout
                         </button>
+                    ) : (
+                        <Link
+                            to={"/signup"}
+                            className="hidden md:block text-xs font-semibold bg-blue-500 text-white py-2 px-4 rounded-lg shadow"
+                        >
+                            Sign Up
+                        </Link>
                     )}
 
                     <NavbarItem>
@@ -247,6 +246,23 @@ export default function Nav() {
                 <p className="font-semibold">Signed in as</p>
                 <p className="font-semibold">zoey@example.com</p>
               </DropdownItem> */}
+                            {auth?.accessToken ? (
+                                <DropdownItem>
+                                    <Link
+                                        to={"/me"}
+                                        style={{
+                                            display: "block",
+                                            width: "100%",
+                                            height: "100%",
+                                        }}
+                                    >
+                                        My Profile
+                                    </Link>
+                                </DropdownItem>
+                            ) : (
+                                ""
+                            )}
+
                             {dropdownItems.map((item) => (
                                 <DropdownItem key={item.id} textValue="items">
                                     <Link
@@ -263,23 +279,34 @@ export default function Nav() {
                                 </DropdownItem>
                             ))}
 
-                            <DropdownItem
-                                color="primary"
-                                textValue="signup"
-                                className="block md:hidden"
-                            >
-                                <Link
-                                    to={"/signup"}
-                                    style={{
-                                        display: "block",
-                                        width: "100%",
-                                        height: "100%",
-                                        color: "",
-                                    }}
+                            {auth?.accessToken ? (
+                                <DropdownItem
+                                    key={"logout"}
+                                    color="danger"
+                                    className="text-danger"
+                                    onClick={logout}
                                 >
-                                    Sign Up
-                                </Link>
-                            </DropdownItem>
+                                    Logout
+                                </DropdownItem>
+                            ) : (
+                                <DropdownItem
+                                    color="primary"
+                                    textValue="signup"
+                                    className="block md:hidden"
+                                >
+                                    <Link
+                                        to={"/login"}
+                                        style={{
+                                            display: "block",
+                                            width: "100%",
+                                            height: "100%",
+                                            color: "",
+                                        }}
+                                    >
+                                        Login
+                                    </Link>
+                                </DropdownItem>
+                            )}
                         </DropdownMenu>
                     </Dropdown>
                 </NavbarContent>
