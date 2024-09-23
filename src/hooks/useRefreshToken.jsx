@@ -4,7 +4,7 @@ function useRefreshToken() {
     const { setAuth } = useAuth();
     const refreshToken = localStorage.getItem("refreshToken");
 
-    const refresh = async () => {
+    const newAccessToken = async () => {
         const response = await fetch(
             "https://adlizone.pythonanywhere.com/api/users/token/refresh/",
             {
@@ -22,12 +22,16 @@ function useRefreshToken() {
         const data = await response.json();
 
         setAuth((prev) => {
-            return { ...prev, accessToken: data.access };
+            return {
+                ...prev,
+                accessToken: data.access,
+                refreshToken: refreshToken,
+            };
         });
         return data.access;
     };
 
-    return refresh;
+    return newAccessToken;
 }
 
 export default useRefreshToken;

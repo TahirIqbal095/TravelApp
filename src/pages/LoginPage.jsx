@@ -150,7 +150,10 @@ function Login() {
                                     <span>
                                         {" "}
                                         {isLoading ? (
-                                            <Spinner color="default" />
+                                            <Spinner
+                                                color="default"
+                                                size="sm"
+                                            />
                                         ) : (
                                             ""
                                         )}

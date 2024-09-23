@@ -187,7 +187,10 @@ function Signup() {
                                     <span>
                                         {" "}
                                         {isLoading ? (
-                                            <Spinner color="default" />
+                                            <Spinner
+                                                color="default"
+                                                size="sm"
+                                            />
                                         ) : (
                                             ""
                                         )}
