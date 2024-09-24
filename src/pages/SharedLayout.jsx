@@ -8,7 +8,7 @@ function SharedLayout() {
     return (
         <>
             <Nav />
-            <Toaster position="bottom-right" reverseOrder={false} />
+            <Toaster position="top-center" reverseOrder={false} />
             <Outlet />
             <Footer />
         </>

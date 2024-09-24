@@ -17,6 +17,7 @@ import FilterPackage from "./pages/FilterPackage.jsx";
 import Login from "./pages/LoginPage.jsx";
 import Signup from "./pages/SignupPage.jsx";
 import { AuthProvider } from "./context/AuthProvider.jsx";
+import { OrderProvider } from "./context/OrderProvider.jsx";
 
 import "./index.css";
 
@@ -79,7 +80,9 @@ createRoot(document.getElementById("root")).render(
     <StrictMode>
         <NextUIProvider>
             <AuthProvider>
-                <RouterProvider router={router} />
+                <OrderProvider>
+                    <RouterProvider router={router} />
+                </OrderProvider>
             </AuthProvider>
         </NextUIProvider>
     </StrictMode>
