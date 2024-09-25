@@ -4,12 +4,6 @@ import {
     SelectItem,
     Button,
     DatePicker,
-    Modal,
-    ModalContent,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
-    useDisclosure,
     Popover,
     PopoverTrigger,
     PopoverContent,
@@ -17,7 +11,8 @@ import {
 
 import toast from "react-hot-toast";
 
-import { useEffect, useState, useMemo, Children } from "react";
+import { useEffect, useState, useMemo } from "react";
+import useOrder from "../../hooks/useOrder";
 
 function Form({ useGrid }) {
     const [name, setName] = useState("");
@@ -28,8 +23,7 @@ function Form({ useGrid }) {
     const [child, setChild] = useState("");
     const [pkg, setPkg] = useState([]);
     const [date, setDate] = useState("");
-    const [order, setOrder] = useState(null);
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { order, setOrder } = useOrder();
 
     // email validation
     const validateEmail = (value) =>
@@ -67,30 +61,40 @@ function Form({ useGrid }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setOrder({
+            name: name,
+            email: email,
+            phone: phone,
+            tourPackage: tourPackage,
+            adults: adults,
+            children: child,
+            data: date,
+        });
+
         try {
-            const response = await fetch(
-                "https://adlizone.pythonanywhere.com/api/tours/bookings/",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        customer_name: name,
-                        customer_email: email,
-                        customer_phone: phone,
-                        adults: adults,
-                        children: child,
-                        tour_package: tourPackage,
-                        arrival_date: date,
-                    }),
-                }
-            );
+            const response = await fetch("https://api.razorpay.com/v1/orders", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization:
+                        "Basic" +
+                        btoa(
+                            `${rzp_test_7qcYsT0FXwSaPR} : ${eTlDjSt26h99vWbwgMK1aD56}`
+                        ),
+                },
+                body: JSON.stringify({
+                    amount: 500,
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    currency: "INR",
+                }),
+            });
 
             const data = await response.json();
+            console.log(data);
 
             if (response.status === 201) {
-                setOrder(data);
             } else {
                 if (data.customer_name) {
                     toastMessageFailed(data.customer_name[0]);
@@ -109,64 +113,6 @@ function Form({ useGrid }) {
         } catch (error) {
             toastMessageFailed("Server error, please try again");
         }
-    };
-
-    function loadRazorpay(src) {
-        return new Promise((resolve) => {
-            const script = document.createElement("script");
-            script.src = src;
-
-            script.onload = () => {
-                resolve(true);
-            };
-            script.onerror = () => {
-                resolve(false);
-            };
-
-            document.body.appendChild(script);
-        });
-    }
-
-    const displayRazorpay = async () => {
-        const result = await loadRazorpay(
-            "https://checkout.razorpay.com/v1/checkout.js"
-        );
-
-        if (!result) {
-            toastError("Error loading Razorpay");
-            return;
-        }
-
-        const options = {
-            key: "",
-            amount: "",
-            currency: "INR",
-            name: "Mount Eco",
-            description: "Thanks for trusting Mount Eco",
-            image: assets.logo,
-            order_id: "",
-            handler: function (response) {
-                toastSuccess("Payment Successfull");
-            },
-            prefill: {
-                //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
-                name: "Tahir iqbal", //your customer's name
-                email: "tahir@example.com",
-                contact: "9000090000", //Provide the customer's phone number for better conversion rates
-            },
-            notes: {
-                address: "Srinagar Kashmir, Mount Eco",
-            },
-            theme: {
-                color: "#3399cc",
-            },
-        };
-        const rzp1 = new Razorpay(options);
-        rzp1.on("payment.failed", function (response) {
-            toastError("Payment failed");
-        });
-
-        rzp1.open();
     };
 
     const gridClasses = useGrid
@@ -290,7 +236,6 @@ function Form({ useGrid }) {
                         {hasFormData() ? (
                             <Button
                                 type="submit"
-                                onPress={onOpen}
                                 color="primary"
                                 className="mt-2 md:mt-0"
                             >
@@ -306,7 +251,7 @@ function Form({ useGrid }) {
                                 <PopoverContent>
                                     <div className="px-1 py-2">
                                         <div className="text-md text-rose-700">
-                                            Fill the form details
+                                            Please fill the form details
                                         </div>
                                     </div>
                                 </PopoverContent>
@@ -314,95 +259,6 @@ function Form({ useGrid }) {
                         )}
                     </div>
                 </form>
-                <Modal
-                    backdrop="blur"
-                    size="xs"
-                    isOpen={isOpen}
-                    onOpenChange={onOpenChange}
-                    motionProps={{
-                        variants: {
-                            enter: {
-                                y: 0,
-                                opacity: 1,
-                                transition: {
-                                    duration: 0.3,
-                                    ease: "easeOut",
-                                },
-                            },
-                            exit: {
-                                y: -20,
-                                opacity: 0,
-                                transition: {
-                                    duration: 0.2,
-                                    ease: "easeIn",
-                                },
-                            },
-                        },
-                    }}
-                >
-                    <ModalContent>
-                        {(onClose) => (
-                            <>
-                                <ModalHeader className="flex flex-col gap-1 text-blue-600">
-                                    Details
-                                </ModalHeader>
-                                <ModalBody>
-                                    <p className="flex items-center justify-between text-base font-semibold">
-                                        <span>Name :</span>
-                                        <span className="text-sm font-normal">
-                                            {name}
-                                        </span>
-                                    </p>
-                                    <p className="flex items-center justify-between text-base font-semibold">
-                                        <span>Phone No :</span>
-                                        <span className="text-sm font-normal">
-                                            {phone}
-                                        </span>
-                                    </p>
-                                    <p className="flex items-center justify-between text-base font-semibold">
-                                        <span>Email :</span>
-                                        <span className="text-sm font-normal">
-                                            {email}
-                                        </span>
-                                    </p>
-                                    <p className="flex items-center justify-between text-base font-semibold">
-                                        <span>Tour Package :</span>
-                                        <span className="text-sm font-normal">
-                                            {tourPackage}
-                                        </span>
-                                    </p>
-                                    <p className="flex items-center justify-between text-base font-semibold">
-                                        <span>Adults : </span>
-                                        <span className="text-sm font-normal">
-                                            {adults}
-                                        </span>
-                                    </p>
-                                    <p className="flex items-center justify-between text-base font-semibold">
-                                        <span>Children : </span>
-                                        <span className="text-sm font-normal">
-                                            {child}
-                                        </span>
-                                    </p>
-                                </ModalBody>
-                                <ModalFooter>
-                                    <Button
-                                        color="danger"
-                                        variant="light"
-                                        onPress={onClose}
-                                    >
-                                        Close
-                                    </Button>
-                                    <Button
-                                        color="primary"
-                                        onClick={displayRazorpay}
-                                    >
-                                        Pay with Razorpay
-                                    </Button>
-                                </ModalFooter>
-                            </>
-                        )}
-                    </ModalContent>
-                </Modal>
             </div>
         </>
     );

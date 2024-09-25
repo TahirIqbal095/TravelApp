@@ -12,6 +12,7 @@ import AboutUs from "./pages/AboutUs.jsx";
 import TrendingPage from "./pages/TrendingPage.jsx";
 import UserPage from "./pages/UserPage.jsx";
 import PersistLogin from "./component/auth/PersistLogin.jsx";
+import Payment from "./component/payments/Payment.jsx";
 
 import FilterPackage from "./pages/FilterPackage.jsx";
 import Login from "./pages/LoginPage.jsx";
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
                     {
                         path: "signup",
                         element: <Signup />,
+                    },
+                    {
+                        path: "user/checkout",
+                        element: <Payment />,
                     },
                 ],
             },
