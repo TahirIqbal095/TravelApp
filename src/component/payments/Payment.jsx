@@ -37,18 +37,19 @@ function Payment() {
         }
 
         const options = {
-            key: "rzp_test_7qcYsT0FXwSaPR",
-            amount: "500",
-            currency: "INR",
+            key: process.env.KEY_ID,
+            booking_id: order.booking_id,
+            amount: order.amount,
+            currency: order.currency,
             name: "Mount Eco",
             description: "Thanks for trusting Mount Eco",
             image: assets.logo,
-            order_id: "order_P1OU9ZHF8NC5yy",
+            order_id: order.order_id,
             handler: function (response) {
                 toastSuccess("Payment Successfull");
             },
             prefill: {
-                name: "Tahir iqbal",
+                name: auth?.username,
                 email: "tahir@example.com",
                 contact: "9000090000",
             },
@@ -104,7 +105,7 @@ function Payment() {
                                 <span className="">Full Name</span>
                             </div>
                             <span className="text-sm text-gray-900">
-                                Irvin Zhan
+                                {auth?.user}
                             </span>
                         </div>
                         <div className="flex w-full items-center justify-between py-2">
@@ -115,7 +116,7 @@ function Payment() {
                                 <span>Email</span>
                             </div>
                             <span className="text-sm text-gray-900">
-                                john.smith@subframe.com
+                                maim@mail.com
                             </span>
                         </div>
                         <div className="flex w-full items-center justify-between py-2">
@@ -137,11 +138,11 @@ function Payment() {
                                     your_trips
                                 </span>
                                 <span className="text-body font-body text-subtext-color">
-                                    Tour Package
+                                    Booking id
                                 </span>
                             </div>
                             <span className="text-sm text-gray-900">
-                                Pahalgam
+                                {order?.booking_id}
                             </span>
                         </div>
                     </div>
@@ -150,7 +151,7 @@ function Payment() {
                             Total amount due
                         </span>
                         <span className="text-lg font-medium text-gray-900">
-                            $300.99
+                            ₹ {order?.amount}
                         </span>
                     </div>
                 </div>

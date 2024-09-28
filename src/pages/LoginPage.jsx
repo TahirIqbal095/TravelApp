@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
 import { Spinner } from "@nextui-org/react";
@@ -11,6 +11,7 @@ function Login() {
     const [hidePassword, setHidePassword] = useState(true);
     const { setAuth } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
 
     // toast messages
     const toastMessageSucess = () => toast.success("You are Logged in");
@@ -56,7 +57,8 @@ function Login() {
 
                 setAuth({ user, accessToken });
                 toastMessageSucess();
-                navigate("/me");
+                const from = location.state?.from || "/me";
+                navigate(from);
             } else {
                 toastMessageFailed(
                     "Something went wrong. Please try again later"

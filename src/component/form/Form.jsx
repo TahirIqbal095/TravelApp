@@ -12,7 +12,9 @@ import {
 import { useEffect, useState, useMemo } from "react";
 import useOrder from "../../hooks/useOrder";
 import useAuth from "../../hooks/useAuth";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import { useNavigate } from "react-router-dom";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Form({ useGrid }) {
     const [name, setName] = useState("");
@@ -25,7 +27,7 @@ function Form({ useGrid }) {
     const [date, setDate] = useState("");
     const { setOrder } = useOrder();
     const { auth } = useAuth();
-    const axiosPrivate = useAxiosPrivate();
+    const navigate = useNavigate();
 
     const accessToken = auth?.accessToken;
 
@@ -69,22 +71,22 @@ function Form({ useGrid }) {
         });
 
         try {
-            const response = await axiosPrivate.post(
-                "https://adlizone.pythonanywhere.com/api/bookings/create/",
-                {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                    },
-                    data: {
-                        adults: adults,
-                        children: child,
-                        arrival_date: date,
-                        tour_package: "pahalgam",
-                    },
-                }
-            );
+            const response = await fetch(`${API_URL}/api/bookings/create/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
+                },
 
-            console.log(response);
+                body: JSON.stringify({
+                    tour_package: tourPackage,
+                    number_of_adults: adults,
+                    number_of_children: child,
+                }),
+            });
+            const data = await response.json();
+            setOrder(data);
+            navigate("/user/checkout", { state: location.pathname });
         } catch (error) {
             console.log(error);
         }
