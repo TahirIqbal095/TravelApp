@@ -13,10 +13,11 @@ import TrendingPage from "./pages/TrendingPage.jsx";
 import UserPage from "./pages/UserPage.jsx";
 import PersistLogin from "./component/auth/PersistLogin.jsx";
 import Payment from "./component/payments/Payment.jsx";
-
+import ProtectedRoutes from "./component/protectedRoutes/ProtectedRoutes.jsx";
 import FilterPackage from "./pages/FilterPackage.jsx";
 import Login from "./pages/LoginPage.jsx";
 import Signup from "./pages/SignupPage.jsx";
+
 import { AuthProvider } from "./context/AuthProvider.jsx";
 import { OrderProvider } from "./context/OrderProvider.jsx";
 
@@ -35,10 +36,6 @@ const router = createBrowserRouter([
                     {
                         index: true,
                         element: <HomePage />,
-                    },
-                    {
-                        path: "me",
-                        element: <UserPage />,
                     },
 
                     {
@@ -72,8 +69,17 @@ const router = createBrowserRouter([
                         element: <Signup />,
                     },
                     {
-                        path: "user/checkout",
-                        element: <Payment />,
+                        element: <ProtectedRoutes />,
+                        children: [
+                            {
+                                path: "me",
+                                element: <UserPage />,
+                            },
+                            {
+                                path: "user/checkout",
+                                element: <Payment />,
+                            },
+                        ],
                     },
                 ],
             },

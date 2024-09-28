@@ -6,8 +6,7 @@ const useLogout = () => {
     const { setAuth } = useAuth();
 
     const logout = () => {
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
+        localStorage.clear();
         setAuth({});
         navigate("/login");
     };

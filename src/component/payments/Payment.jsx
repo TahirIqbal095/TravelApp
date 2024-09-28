@@ -1,9 +1,14 @@
 import useOrder from "../../hooks/useOrder";
 import { Button } from "@nextui-org/react";
 import { assets } from "../../assets/assets";
+import useAuth from "../../hooks/useAuth";
+
+import { useNavigate } from "react-router-dom";
 
 function Payment() {
     const { order } = useOrder();
+    const { auth } = useAuth();
+    const navigate = useNavigate();
 
     function loadRazorpay(src) {
         return new Promise((resolve) => {

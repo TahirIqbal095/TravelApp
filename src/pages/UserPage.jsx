@@ -6,17 +6,15 @@ import useLogout from "../hooks/useLogout";
 
 function UserPage() {
     const [user, setUser] = useState();
-    const axiosPrivate = useAxiosPrivate();
+
     const location = useLocation();
     const navigate = useNavigate();
-    const accessToken = localStorage.getItem("accessToken");
+    const axiosPrivate = useAxiosPrivate();
     const logout = useLogout();
 
+    const accessToken = localStorage.getItem("accessToken");
+
     useEffect(() => {
-        if (!accessToken) {
-            navigate("/login");
-            return;
-        }
         const controller = new AbortController();
 
         const getUser = async () => {
@@ -54,7 +52,7 @@ function UserPage() {
                     <div className="w-48 h-48 bg-white mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-blue-500">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-24 w-24"
+                            className="h-16 w-16"
                             viewBox="0 0 20 20"
                             fill="currentColor"
                         >

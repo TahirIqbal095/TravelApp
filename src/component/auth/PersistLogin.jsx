@@ -5,9 +5,9 @@ import { useState, useEffect } from "react";
 import { Spinner } from "@nextui-org/react";
 
 function PersistLogin() {
-    const refresh = useRefreshToken();
     const { auth } = useAuth();
     const [isLoading, setIsLoading] = useState(true);
+    const refresh = useRefreshToken();
 
     useEffect(() => {
         const verifyRefreshToken = async () => {

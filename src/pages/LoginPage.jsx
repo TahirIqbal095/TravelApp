@@ -7,7 +7,6 @@ import { Spinner } from "@nextui-org/react";
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [errorMesssage, setErrorMessage] = useState("");
     const [isLoading, setIsLoading] = useState();
     const [hidePassword, setHidePassword] = useState(true);
     const { setAuth } = useAuth();
@@ -48,13 +47,14 @@ function Login() {
                 toastMessageFailed(data?.detail);
             } else if (response.status === 200) {
                 const user = data?.user?.username;
-                const refreshToken = data?.refresh;
                 const accessToken = data?.access;
+                const refreshToken = data?.refresh;
 
                 localStorage.setItem("accessToken", accessToken);
                 localStorage.setItem("refreshToken", refreshToken);
+                localStorage.setItem("username", user);
 
-                setAuth({ user, accessToken, refreshToken });
+                setAuth({ user, accessToken });
                 toastMessageSucess();
                 navigate("/me");
             } else {

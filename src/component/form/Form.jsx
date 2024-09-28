@@ -9,10 +9,10 @@ import {
     PopoverContent,
 } from "@nextui-org/react";
 
-import toast from "react-hot-toast";
-
 import { useEffect, useState, useMemo } from "react";
 import useOrder from "../../hooks/useOrder";
+import useAuth from "../../hooks/useAuth";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 function Form({ useGrid }) {
     const [name, setName] = useState("");
@@ -23,7 +23,11 @@ function Form({ useGrid }) {
     const [child, setChild] = useState("");
     const [pkg, setPkg] = useState([]);
     const [date, setDate] = useState("");
-    const { order, setOrder } = useOrder();
+    const { setOrder } = useOrder();
+    const { auth } = useAuth();
+    const axiosPrivate = useAxiosPrivate();
+
+    const accessToken = auth?.accessToken;
 
     // email validation
     const validateEmail = (value) =>
@@ -41,13 +45,6 @@ function Form({ useGrid }) {
         if (phone === "") return false;
         return validatePhone(phone) ? false : true;
     });
-
-    // toast messages
-    const toastMessageSucess = () =>
-        toast.success("Form submitted successfully");
-    const toastMessageFailed = (message) => {
-        toast.error(message);
-    };
 
     useEffect(() => {
         fetch("https://adlizone.pythonanywhere.com/api/tours/")
@@ -72,46 +69,24 @@ function Form({ useGrid }) {
         });
 
         try {
-            const response = await fetch("https://api.razorpay.com/v1/orders", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization:
-                        "Basic" +
-                        btoa(
-                            `${rzp_test_7qcYsT0FXwSaPR} : ${eTlDjSt26h99vWbwgMK1aD56}`
-                        ),
-                },
-                body: JSON.stringify({
-                    amount: 500,
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    currency: "INR",
-                }),
-            });
-
-            const data = await response.json();
-            console.log(data);
-
-            if (response.status === 201) {
-            } else {
-                if (data.customer_name) {
-                    toastMessageFailed(data.customer_name[0]);
-                } else if (data.customer_email) {
-                    toastMessageFailed(data.customer_email[0]);
-                } else if (data.adults) {
-                    toastMessageFailed(data.adults[0]);
-                } else if (data.children) {
-                    toastMessageFailed(data.children[0]);
-                } else if (data.tour_package) {
-                    toastMessageFailed(data.tour_package[0]);
-                } else if (data.arrival_date) {
-                    toastMessageFailed(data.arrival_date[0]);
+            const response = await axiosPrivate.post(
+                "https://adlizone.pythonanywhere.com/api/bookings/create/",
+                {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                    data: {
+                        adults: adults,
+                        children: child,
+                        arrival_date: date,
+                        tour_package: "pahalgam",
+                    },
                 }
-            }
+            );
+
+            console.log(response);
         } catch (error) {
-            toastMessageFailed("Server error, please try again");
+            console.log(error);
         }
     };
 
@@ -120,7 +95,7 @@ function Form({ useGrid }) {
         : "flex flex-col gap-2";
 
     const hasFormData = () => {
-        if (name && email && phone && adults && tourPackage) return true;
+        if (phone && adults && tourPackage && child && date) return true;
 
         return false;
     };
