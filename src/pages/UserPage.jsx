@@ -46,10 +46,10 @@ function UserPage() {
         };
     }, []);
     return (
-        <div className="p-16">
+        <div className="py-16 px-8">
             <div className="p-8 bg-white shadow mt-24">
                 <div className="relative">
-                    <div className="w-48 h-48 bg-white mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-blue-500">
+                    <div className="w-32 h-32 bg-white mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-blue-500">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-16 w-16"
