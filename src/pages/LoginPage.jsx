@@ -56,9 +56,9 @@ function Login() {
                 localStorage.setItem("username", user);
 
                 setAuth({ user, accessToken });
-                toastMessageSucess();
                 const from = location.state?.from || "/me";
                 navigate(from);
+                toastMessageSucess();
             } else {
                 toastMessageFailed(
                     "Something went wrong. Please try again later"

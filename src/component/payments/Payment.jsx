@@ -4,11 +4,20 @@ import { assets } from "../../assets/assets";
 import useAuth from "../../hooks/useAuth";
 
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+
+const KEY_ID = import.meta.env.KEY_ID;
+const API_URL = import.meta.env.VITE_API_URL;
+
+const success = (msg) => {
+    toast.success(msg);
+};
 
 function Payment() {
     const { order } = useOrder();
     const { auth } = useAuth();
     const navigate = useNavigate();
+    const accessToken = auth?.accessToken;
 
     function loadRazorpay(src) {
         return new Promise((resolve) => {
@@ -37,16 +46,39 @@ function Payment() {
         }
 
         const options = {
-            key: process.env.KEY_ID,
-            booking_id: order.booking_id,
-            amount: order.amount,
-            currency: order.currency,
+            key: KEY_ID,
+            booking_id: order?.booking_id,
+            amount: order?.amount,
+            currency: order?.currency,
             name: "Mount Eco",
             description: "Thanks for trusting Mount Eco",
             image: assets.logo,
-            order_id: order.order_id,
-            handler: function (response) {
-                toastSuccess("Payment Successfull");
+            order_id: order?.order_id,
+            handler: async function (response) {
+                console.log(response);
+
+                try {
+                    const resposne = await fetch(
+                        `${API_URL}/api/bookings/payment-success/`,
+                        {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json",
+                                Authorization: `Bearer ${accessToken}`,
+                            },
+                            body: JSON.stringify({
+                                razorpay_order_id: order?.order_id,
+                                amount: order?.amount,
+                                status: "success",
+                            }),
+                        }
+                    );
+                } catch (error) {
+                    console.error("error in payments : " + error);
+                }
+
+                navigate("/me");
+                success("Payment Successfull");
             },
             prefill: {
                 name: auth?.username,
