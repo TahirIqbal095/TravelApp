@@ -19,6 +19,8 @@ function Payment() {
     const navigate = useNavigate();
     const accessToken = auth?.accessToken;
 
+    console.log(order);
+
     function loadRazorpay(src) {
         return new Promise((resolve) => {
             const script = document.createElement("script");
@@ -47,13 +49,13 @@ function Payment() {
 
         const options = {
             key: KEY_ID,
-            booking_id: order?.booking_id,
-            amount: order?.amount,
-            currency: order?.currency,
+            booking_id: order.data?.booking_id,
+            amount: order.data?.amount,
+            currency: order.data?.currency,
             name: "Mount Eco",
             description: "Thanks for trusting Mount Eco",
             image: assets.logo,
-            order_id: order?.order_id,
+            order_id: order.data?.order_id,
             handler: async function (response) {
                 try {
                     const res = await fetch(
@@ -65,8 +67,8 @@ function Payment() {
                                 Authorization: `Bearer ${accessToken}`,
                             },
                             body: JSON.stringify({
-                                razorpay_order_id: order?.order_id,
-                                amount: order?.amount,
+                                razorpay_order_id: order.data?.order_id,
+                                amount: order.data?.amount,
                                 status: "success",
                             }),
                         }
@@ -135,7 +137,7 @@ function Payment() {
                                 <span className="">Full Name</span>
                             </div>
                             <span className="text-sm text-gray-900">
-                                {auth?.user}
+                                {order?.name}
                             </span>
                         </div>
                         <div className="flex w-full items-center justify-between py-2">
@@ -146,7 +148,7 @@ function Payment() {
                                 <span>Email</span>
                             </div>
                             <span className="text-sm text-gray-900">
-                                maim@mail.com
+                                {order?.email}
                             </span>
                         </div>
                         <div className="flex w-full items-center justify-between py-2">
@@ -159,7 +161,7 @@ function Payment() {
                                 </span>
                             </div>
                             <span className="text-sm text-gray-900">
-                                9785298482
+                                {order?.phone}
                             </span>
                         </div>
                         <div className="flex w-full items-center justify-between py-2">
@@ -172,7 +174,7 @@ function Payment() {
                                 </span>
                             </div>
                             <span className="text-sm text-gray-900">
-                                {order?.booking_id}
+                                {order.data?.booking_id}
                             </span>
                         </div>
                     </div>
@@ -181,7 +183,7 @@ function Payment() {
                             Total amount due
                         </span>
                         <span className="text-lg font-medium text-gray-900">
-                            ₹ {order?.amount}
+                            ₹ {order.data?.amount}
                         </span>
                     </div>
                 </div>

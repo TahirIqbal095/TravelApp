@@ -85,7 +85,12 @@ function Form({ useGrid }) {
                 }),
             });
             const data = await response.json();
-            setOrder(data);
+            setOrder((prev) => {
+                return {
+                    ...prev,
+                    data,
+                };
+            });
             navigate("/user/checkout", { state: location.pathname });
         } catch (error) {
             console.log(error);
