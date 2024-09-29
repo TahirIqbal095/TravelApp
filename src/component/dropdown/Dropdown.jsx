@@ -8,6 +8,8 @@ import {
 } from "@nextui-org/react";
 import { Link } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function DropDown(props) {
     const [selectedKeys, setSelectedKeys] = React.useState(
         new Set(["Filter Packages"])
@@ -20,7 +22,7 @@ export default function DropDown(props) {
     );
 
     useEffect(() => {
-        fetch("https://adlizone.pythonanywhere.com/api/tours/categories/")
+        fetch(`${API_URL}/api/tours/categories/`)
             .then((response) => response.json())
             .then((data) => {
                 setCategories(data);

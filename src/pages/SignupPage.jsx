@@ -4,6 +4,8 @@ import useAuth from "../hooks/useAuth";
 import { Spinner } from "@nextui-org/react";
 import toast from "react-hot-toast";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Signup() {
     const { setAuth } = useAuth();
 
@@ -40,21 +42,18 @@ function Signup() {
         setIsLoading(true);
 
         try {
-            const response = await fetch(
-                "https://adlizone.pythonanywhere.com/api/users/registration/",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
+            const response = await fetch(`${API_URL}/api/users/registration/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
 
-                    body: JSON.stringify({
-                        phone_number: username,
-                        password: firstPassword,
-                        repeat_password: secondPassword,
-                    }),
-                }
-            );
+                body: JSON.stringify({
+                    phone_number: username,
+                    password: firstPassword,
+                    repeat_password: secondPassword,
+                }),
+            });
 
             const data = await response.json();
 

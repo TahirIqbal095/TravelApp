@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import Card from "../component/card/Card";
 import { useParams } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function FilterPackage() {
     const [filterPkgs, setFilterPkgs] = useState([]);
     const { id } = useParams();
 
     useEffect(() => {
-        fetch(`https://adlizone.pythonanywhere.com/api/tours/search/${id}/`)
+        fetch(`${API_URL}/api/tours/search/${id}/`)
             .then((response) => response.json())
             .then((data) => {
                 setFilterPkgs(data);

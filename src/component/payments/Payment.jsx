@@ -55,10 +55,8 @@ function Payment() {
             image: assets.logo,
             order_id: order?.order_id,
             handler: async function (response) {
-                console.log(response);
-
                 try {
-                    const resposne = await fetch(
+                    const res = await fetch(
                         `${API_URL}/api/bookings/payment-success/`,
                         {
                             method: "PUT",

@@ -15,6 +15,8 @@ import { Pagination } from "swiper/modules";
 import { AsyncImage } from "loadable-image";
 import { Blur } from "transitions-kit";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function DetailPage() {
     const { id } = useParams();
     const [pkg, setPkg] = useState([]);
@@ -29,13 +31,9 @@ function DetailPage() {
             try {
                 const [pkgResponse, categoriesResponse, cardResponse] =
                     await Promise.all([
-                        fetch(
-                            `https://adlizone.pythonanywhere.com/api/tours/${id}/`
-                        ),
-                        fetch(
-                            `https://adlizone.pythonanywhere.com/api/tours/${id}/categories/`
-                        ),
-                        fetch(`https://adlizone.pythonanywhere.com/api/tours/`),
+                        fetch(`${API_URL}/api/tours/${id}/`),
+                        fetch(`${API_URL}/api/tours/${id}/categories/`),
+                        fetch(`${API_URL}/api/tours/`),
                     ]);
 
                 const pkgData = await pkgResponse.json();

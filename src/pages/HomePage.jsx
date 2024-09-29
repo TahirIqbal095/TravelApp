@@ -9,13 +9,15 @@ import Testimonial from "../component/testimonial/Testimonial";
 import PopoverContact from "../component/popover/PopoverContact";
 import CardGrid2 from "../component/cardgrid/CardGrid2";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 import "./styles/homepage.css";
 
 function HomePage() {
     const [pkgs, setPkgs] = useState([]);
 
     useEffect(() => {
-        fetch("https://adlizone.pythonanywhere.com/api/tours/")
+        fetch(`${API_URL}/api/tours/`)
             .then((response) => response.json())
             .then((data) => {
                 setPkgs(data);

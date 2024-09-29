@@ -1,4 +1,5 @@
 import useAuth from "./useAuth";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function useRefreshToken() {
     const { setAuth } = useAuth();
@@ -8,7 +9,7 @@ function useRefreshToken() {
     const newAccessToken = async () => {
         try {
             const response = await fetch(
-                "https://adlizone.pythonanywhere.com/api/users/token/refresh/",
+                `${API_URL}/api/users/token/refresh/`,
                 {
                     method: "POST",
                     headers: {

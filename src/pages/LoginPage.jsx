@@ -4,6 +4,8 @@ import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
 import { Spinner } from "@nextui-org/react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -27,20 +29,17 @@ function Login() {
         e.preventDefault();
         setIsLoading(true);
         try {
-            const response = await fetch(
-                "https://adlizone.pythonanywhere.com/api/users/login/",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
+            const response = await fetch(`${API_URL}/api/users/login/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
 
-                    body: JSON.stringify({
-                        phone_number: username,
-                        password: password,
-                    }),
-                }
-            );
+                body: JSON.stringify({
+                    phone_number: username,
+                    password: password,
+                }),
+            });
 
             const data = await response.json();
 
